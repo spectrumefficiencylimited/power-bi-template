@@ -1,0 +1,217 @@
+{
+  "module": {
+    "name": "_[Filter Display Name]_",
+    "type": "slicer",
+    "category": "filters",
+    "description": "_[Filter purpose and behavior description]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [
+      "_[Required table 1]_"
+    ],
+    "measures_required": [],
+    "config": {
+      "visualType": "slicer",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "outlineColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Organization primary color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "outlineWeight": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "selection": [
+          {
+            "properties": {
+              "selectAllCheckboxEnabled": {
+                "expr": {
+                  "Literal": {
+                    "Value": "_[true|false for select all option]_"
+                  }
+                }
+              },
+              "singleSelect": {
+                "expr": {
+                  "Literal": {
+                    "Value": "_[true|false for single vs multi-select]_"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "header": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Header text color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "background": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Header background color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "textSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "12L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "items": [
+          {
+            "properties": {
+              "fontColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Item text color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "background": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Item background color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "textSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "activeProjections": {
+        "Values": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Source table name]_"
+                }
+              },
+              "Property": "_[Filter field name]_"
+            }
+          }
+        ]
+      },
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "primary_color": "_[Organization primary color hex]_",
+      "secondary_color": "_[Organization secondary color hex]_",
+      "font_family": "_[Standard font family]_",
+      "interaction_style": "_[Dropdown|List|Tiles|Cards]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "orientation": "_[Vertical|Horizontal]_",
+        "show_search": "true"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "orientation": "_[Vertical|Horizontal]_",
+        "show_search": "true"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "orientation": "Vertical",
+        "show_search": "false"
+      }
+    },
+    "accessibility": {
+      "aria_labels": "_[Filter description for screen readers]_",
+      "keyboard_navigation": "_[Tab order and keyboard shortcuts]_",
+      "focus_indicators": "_[Visual focus indicators]_"
+    },
+    "usage_notes": {
+      "filter_behavior": "_[How filter affects other visuals]_",
+      "default_selection": "_[Default selected values]_",
+      "performance_impact": "_[Impact on report performance]_",
+      "best_practices": "_[When and how to use this filter]_"
+    },
+    "customization_options": {
+      "selection_type": "_[Single|Multi|Search enabled]_",
+      "display_style": "_[List|Dropdown|Tiles|Cards]_",
+      "sorting_options": "_[Alphabetical|Custom|Data driven]_",
+      "grouping_options": "_[Hierarchical|Flat|Categorized]_"
+    }
+  }
+}

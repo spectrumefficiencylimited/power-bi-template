@@ -1,0 +1,179 @@
+{
+  "module": {
+    "name": "_[Layout Display Name]_",
+    "type": "layout",
+    "category": "layouts",
+    "description": "_[Layout purpose and target audience]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [],
+    "measures_required": [],
+    "config": {
+      "page_structure": {
+        "header": {
+          "height": "_[Header height in pixels]_",
+          "background_color": "_[Header background color hex]_",
+          "elements": [
+            {
+              "type": "logo",
+              "position": "left",
+              "width": "_[Logo width]_",
+              "height": "_[Logo height]_"
+            },
+            {
+              "type": "title",
+              "position": "center",
+              "font_size": "_[Title font size]_",
+              "font_family": "_[Organization font family]_",
+              "color": "_[Title text color hex]_"
+            },
+            {
+              "type": "navigation",
+              "position": "right",
+              "style": "_[Button|Tab|Dropdown]_"
+            }
+          ]
+        },
+        "filter_bar": {
+          "height": "_[Filter bar height in pixels]_",
+          "background_color": "_[Filter bar background color hex]_",
+          "orientation": "_[Horizontal|Vertical]_",
+          "filter_slots": "_[Number of filter positions]_"
+        },
+        "content_area": {
+          "grid_columns": "_[Number of columns]_",
+          "grid_rows": "_[Number of rows]_",
+          "gap_horizontal": "_[Horizontal gap in pixels]_",
+          "gap_vertical": "_[Vertical gap in pixels]_",
+          "margin": "_[Margin around content area]_"
+        },
+        "footer": {
+          "height": "_[Footer height in pixels]_",
+          "background_color": "_[Footer background color hex]_",
+          "elements": [
+            {
+              "type": "timestamp",
+              "position": "left",
+              "format": "_[Date/time display format]_"
+            },
+            {
+              "type": "data_source",
+              "position": "center",
+              "font_size": "_[Source info font size]_"
+            },
+            {
+              "type": "contact",
+              "position": "right",
+              "content": "_[Contact information]_"
+            }
+          ]
+        }
+      },
+      "visual_zones": [
+        {
+          "zone_id": "kpi_row",
+          "position": {
+            "row": 1,
+            "column": "1-4",
+            "height": "_[KPI row height]_"
+          },
+          "purpose": "Key performance indicators",
+          "recommended_visuals": ["card", "gauge", "kpi"]
+        },
+        {
+          "zone_id": "main_chart",
+          "position": {
+            "row": "2-3",
+            "column": "1-3",
+            "height": "_[Main chart height]_"
+          },
+          "purpose": "Primary analysis visualization",
+          "recommended_visuals": ["lineChart", "columnChart", "barChart"]
+        },
+        {
+          "zone_id": "secondary_chart",
+          "position": {
+            "row": "2-3",
+            "column": 4,
+            "height": "_[Secondary chart height]_"
+          },
+          "purpose": "Supporting analysis",
+          "recommended_visuals": ["pieChart", "donutChart", "table"]
+        },
+        {
+          "zone_id": "detail_table",
+          "position": {
+            "row": 4,
+            "column": "1-4",
+            "height": "_[Table height]_"
+          },
+          "purpose": "Detailed data view",
+          "recommended_visuals": ["table", "matrix"]
+        }
+      ]
+    },
+    "organizational_branding": {
+      "color_scheme": {
+        "primary": "_[Organization primary color hex]_",
+        "secondary": "_[Organization secondary color hex]_",
+        "accent": "_[Organization accent color hex]_",
+        "background": "_[Page background color hex]_",
+        "text": "_[Primary text color hex]_"
+      },
+      "typography": {
+        "header_font": "_[Header font family]_",
+        "body_font": "_[Body font family]_",
+        "title_sizes": {
+          "h1": "_[Main title size]_",
+          "h2": "_[Section title size]_",
+          "h3": "_[Subsection title size]_"
+        }
+      },
+      "spacing": {
+        "standard_margin": "_[Standard margin value]_",
+        "standard_padding": "_[Standard padding value]_",
+        "element_gap": "_[Gap between elements]_"
+      }
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "canvas_width": "_[Desktop canvas width]_",
+        "canvas_height": "_[Desktop canvas height]_",
+        "grid_system": "_[Desktop grid configuration]_",
+        "navigation": "horizontal_tabs"
+      },
+      "tablet": {
+        "canvas_width": "_[Tablet canvas width]_",
+        "canvas_height": "_[Tablet canvas height]_",
+        "grid_system": "_[Tablet grid configuration]_",
+        "navigation": "collapsible_menu"
+      },
+      "mobile": {
+        "canvas_width": "_[Mobile canvas width]_",
+        "canvas_height": "_[Mobile canvas height]_",
+        "grid_system": "single_column",
+        "navigation": "hamburger_menu"
+      }
+    },
+    "accessibility": {
+      "navigation_order": "_[Tab order and focus flow]_",
+      "color_contrast": "_[WCAG compliance notes]_",
+      "screen_reader": "_[Screen reader navigation structure]_",
+      "keyboard_shortcuts": "_[Available keyboard shortcuts]_"
+    },
+    "usage_notes": {
+      "target_audience": "_[Executive|Operational|Analytical]_",
+      "content_density": "_[Low|Medium|High]_",
+      "interaction_complexity": "_[Simple|Moderate|Advanced]_",
+      "update_frequency": "_[Real-time|Daily|Weekly|Monthly]_",
+      "performance_considerations": "_[Load time and interaction performance]_"
+    },
+    "customization_options": {
+      "theme_variants": "_[Light|Dark|High contrast]_",
+      "layout_variants": "_[Compact|Standard|Expanded]_",
+      "department_variants": "_[Department-specific customizations]_",
+      "mobile_adaptations": "_[Mobile-specific layout options]_"
+    }
+  }
+}

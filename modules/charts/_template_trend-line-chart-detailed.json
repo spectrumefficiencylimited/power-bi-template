@@ -1,0 +1,297 @@
+{
+  "module": {
+    "name": "_[Line Chart Display Name]_",
+    "type": "lineChart",
+    "category": "charts",
+    "description": "_[Trend analysis purpose and usage description]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [
+      "_[Time dimension table]_",
+      "_[Primary data table]_"
+    ],
+    "measures_required": [
+      "_[Primary trend measure]_",
+      "_[Secondary comparison measure]_"
+    ],
+    "config": {
+      "visualType": "lineChart",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "responsive": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "position": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[TopCenter|Bottom|Right|Left]_'"
+                  }
+                }
+              },
+              "showTitle": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "axisType": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Continuous|Categorical]_'"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              },
+              "title": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              },
+              "title": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataPoint": [
+          {
+            "properties": {
+              "defaultColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Organization primary color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "strokeWidth": {
+                "expr": {
+                  "Literal": {
+                    "Value": "2L"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataLabels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "_[true|false]_"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "9L"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "activeProjections": {
+        "Category": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Time table name]_"
+                }
+              },
+              "Property": "_[Time field name]_"
+            }
+          }
+        ],
+        "Y": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Data table name]_"
+                }
+              },
+              "Property": "_[Primary measure name]_"
+            }
+          }
+        ],
+        "SecondaryY": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Data table name]_"
+                }
+              },
+              "Property": "_[Secondary measure name]_"
+            }
+          }
+        ]
+      },
+      "orderBy": [
+        {
+          "Direction": 1,
+          "Expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Time table name]_"
+                }
+              },
+              "Property": "_[Time field name]_"
+            }
+          }
+        }
+      ],
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "color_palette": [
+        "_[Primary line color]_",
+        "_[Secondary line color]_",
+        "_[Tertiary line color]_"
+      ],
+      "font_family": "_[Standard font family]_",
+      "chart_style": "_[Modern|Classic|Minimal]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "legend_position": "TopCenter",
+        "data_labels": "_[true|false]_",
+        "axis_titles": "true"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "legend_position": "Bottom",
+        "data_labels": "false",
+        "axis_titles": "true"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "legend_position": "None",
+        "data_labels": "false",
+        "axis_titles": "false"
+      }
+    },
+    "accessibility": {
+      "color_blind_patterns": "_[Different line styles for accessibility]_",
+      "high_contrast_mode": "_[High contrast color scheme]_",
+      "aria_labels": "_[Chart description for screen readers]_"
+    },
+    "usage_notes": {
+      "analysis_type": "Trend analysis over time",
+      "best_practices": "_[When to use line charts vs other chart types]_",
+      "data_requirements": "_[Time series data with continuous values]_",
+      "interaction_behavior": "_[Cross-filtering and drill-through capabilities]_"
+    },
+    "customization_options": {
+      "line_style": "_[Solid|Dashed|Dotted line options]_",
+      "marker_style": "_[Circle|Square|Diamond markers]_",
+      "trend_lines": "_[Linear|Polynomial|Moving average options]_",
+      "time_intelligence": "_[YoY|MoM|QoQ comparison options]_"
+    }
+  }
+}

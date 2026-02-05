@@ -1,0 +1,20 @@
+/// Template semantic model
+/// Rename and configure for your project
+/// 
+/// Instructions:
+/// 1. Open the .pbip file in Power BI Desktop
+/// 2. Add your data sources and tables
+/// 3. Define measures and relationships
+/// 4. Save to update this file automatically
+
+model Model
+    culture: en-AU
+    defaultPowerBIDataSourceVersion: powerBI_V3
+    discourageImplicitMeasures: true
+    sourceQueryCulture: en-AU
+
+    annotation PBI_QueryOrder = []
+
+    annotation PBIDesktopVersion = 2.xxx.xxxx.x
+
+    annotation PBI_ProTooling = ["DevMode"]

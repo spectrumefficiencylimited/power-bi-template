@@ -1,0 +1,433 @@
+# Hospital Emergency Room (ER) Analytics Configuration
+# Healthcare dashboard pattern with 4-dashboard structure
+
+project:
+  name: "Hospital ER Analytics"
+  domain: "healthcare"
+  dataset: "er_data"
+  description: "Optimize ER operations through patient volume, wait times, and operational analytics"
+
+branding:
+  primary_color: "#0066CC"      # Medical blue
+  secondary_color: "#F8F9FA"    # Light gray
+  accent_color: "#28A745"       # Success green
+  alert_color: "#DC3545"        # Alert red
+
+# Date configuration - critical for healthcare time-based analysis
+date:
+  fact_date_field: "Patient Admission Date"
+  datetime_field: "Patient Admission DateTime"
+  calendar_table: "required"
+  time_field: "Patient Admission Time"
+  validation:
+    no_datetime_joins: true
+    require_calendar: true
+    reason: "Healthcare analytics require proper date/time modeling for accurate temporal analysis"
+
+# KPI definitions with healthcare-specific aggregations
+kpis:
+  - field: "Patient ID"
+    display_name: "Number of Patients"
+    aggregation: "DISTINCTCOUNT"
+    format: "#,0"
+    display_units: "none"
+    description: "Unique patients treated in selected period"
+    validation:
+      aggregation_must_be: "DISTINCTCOUNT"
+      reason: "Patient count must use DISTINCTCOUNT to avoid duplicate counting"
+    
+  - field: "Patient Wait Time"
+    display_name: "Avg Wait Time (min)"
+    aggregation: "AVERAGE"
+    format: "#,0.0"
+    display_units: "none"
+    description: "Average patient wait time in minutes"
+    validation:
+      aggregation_must_be: "AVERAGE"
+      reason: "Wait time analysis requires average, not sum"
+    
+  - field: "Patient Satisfaction Score"
+    display_name: "Satisfaction Score"
+    aggregation: "AVERAGE"
+    format: "#,0.0"
+    display_units: "none"
+    description: "Average patient satisfaction rating"
+    
+  - field: "Department Referral"
+    display_name: "Patients Referred"
+    aggregation: "COUNTROWS_FILTERED"
+    format: "#,0"
+    display_units: "none"
+    description: "Patients referred to other departments"
+    filter_condition: "[Department Referral] <> 'None'"
+    
+  - field: "SLA_Compliance"
+    display_name: "% Seen < 30 min"
+    aggregation: "PERCENTAGE"
+    format: "0.0%"
+    display_units: "none"
+    description: "Percentage of patients seen within 30-minute SLA"
+
+# Healthcare-specific visuals with proper data bindings
+visuals:
+  - type: "stacked_bar_chart"
+    name: "admission_status_distribution"
+    title: "Patient Admission Status"
+    category_field: "Admission Status"
+    value_field: "Patient ID"
+    value_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 300
+      y: 160
+      width: 280
+      height: 200
+    features:
+      show_percentage: true
+      data_labels: true
+    insights:
+      - "Track admission vs discharge rates"
+      - "Monitor capacity utilization"
+      
+  - type: "clustered_column_chart"
+    name: "age_group_distribution"
+    title: "Patients by Age Group"
+    x_axis: "Age Group"
+    y_axis: "Patient ID"
+    y_axis_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 600
+      y: 160
+      width: 280
+      height: 200
+    features:
+      sort_by_value: false
+      show_data_labels: true
+    insights:
+      - "Identify age-related demand patterns"
+      - "Plan age-specific resources"
+      
+  - type: "horizontal_bar_chart"
+    name: "department_referrals"
+    title: "Patients by Department Referral"
+    category_field: "Department Referral"
+    value_field: "Patient ID"
+    value_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 900
+      y: 160
+      width: 280
+      height: 200
+    features:
+      sort_by_value: true
+      exclude_none: true
+    insights:
+      - "Monitor referral patterns"
+      - "Identify department bottlenecks"
+      
+  - type: "gauge_chart"
+    name: "sla_compliance_gauge"
+    title: "% Patients Seen Within 30 Minutes"
+    value_field: "SLA_Compliance"
+    value_aggregation: "PERCENTAGE"
+    position:
+      x: 300
+      y: 380
+      width: 280
+      height: 200
+    features:
+      target_value: 85
+      min_value: 0
+      max_value: 100
+      color_zones:
+        - min: 0
+          max: 70
+          color: "#DC3545"
+        - min: 70
+          max: 85
+          color: "#FFC107"
+        - min: 85
+          max: 100
+          color: "#28A745"
+    insights:
+      - "Monitor SLA compliance"
+      - "Identify performance issues"
+      
+  - type: "donut_chart"
+    name: "gender_distribution"
+    title: "Patients by Gender"
+    category_field: "Gender"
+    value_field: "Patient ID"
+    value_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 600
+      y: 380
+      width: 280
+      height: 200
+    features:
+      show_percentage: true
+      inner_radius: 40
+    insights:
+      - "Track gender demographics"
+      - "Plan gender-specific services"
+      
+  - type: "donut_chart"
+    name: "race_distribution"
+    title: "Patients by Race"
+    category_field: "Race"
+    value_field: "Patient ID"
+    value_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 900
+      y: 380
+      width: 280
+      height: 200
+    features:
+      show_percentage: true
+      inner_radius: 40
+    insights:
+      - "Monitor demographic diversity"
+      - "Ensure equitable care access"
+
+  # Healthcare-specific heatmap visual
+  - type: "matrix_heatmap"
+    name: "day_hour_heatmap"
+    title: "Patients by Day & Hour"
+    rows_field: "Day of Week"
+    columns_field: "Hour of Day"
+    value_field: "Patient ID"
+    value_aggregation: "DISTINCTCOUNT"
+    position:
+      x: 300
+      y: 600
+      width: 880
+      height: 300
+    features:
+      color_scale: "sequential"
+      show_values: true
+      conditional_formatting: true
+    insights:
+      - "Identify peak congestion periods"
+      - "Optimize staffing schedules"
+      - "Plan capacity management"
+
+# Slicers for healthcare analytics
+slicers:
+  - name: "month_year_slicer"
+    field: "Month Year"
+    title: "Month-Year"
+    style: "dropdown"
+    multi_select: false
+    select_all: false
+    position:
+      x: 20
+      y: 20
+      width: 200
+      height: 80
+    default_selection: "current_month"
+    
+  - name: "date_range_slicer"
+    field: "Patient Admission Date"
+    title: "Date Range"
+    style: "between"
+    position:
+      x: 20
+      y: 120
+      width: 200
+      height: 80
+    default_selection: "last_30_days"
+    dashboard_visibility:
+      - "Consolidated View"
+      - "Patient Details"
+    
+  - name: "admission_status_filter"
+    field: "Admission Status"
+    title: "Admission Status"
+    style: "list"
+    multi_select: true
+    select_all: true
+    position:
+      x: 20
+      y: 220
+      width: 200
+      height: 100
+    dashboard_visibility:
+      - "Patient Details"
+      
+  - name: "gender_filter"
+    field: "Gender"
+    title: "Gender"
+    style: "list"
+    multi_select: true
+    select_all: true
+    position:
+      x: 20
+      y: 340
+      width: 200
+      height: 80
+    dashboard_visibility:
+      - "Patient Details"
+
+# Interaction rules for healthcare dashboards
+interactions:
+  default_behavior: "filter"
+  rules:
+    - source: "all_slicers"
+      target: "all_visuals"
+      interaction: "filter"
+      reason: "Enable cross-filtering for comprehensive analysis"
+      
+    - source: "kpi_strip"
+      target: "all_visuals"
+      interaction: "none"
+      reason: "KPIs should not be interactive to maintain clarity"
+      
+    - source: "day_hour_heatmap"
+      target: "all_visuals"
+      interaction: "filter"
+      reason: "Allow drilling into specific time periods"
+      
+    - source: "age_group_distribution"
+      target: "gender_distribution,race_distribution"
+      interaction: "highlight"
+      reason: "Show demographic correlations without filtering"
+
+# Healthcare-specific validation rules
+validation_rules:
+  - rule_type: "data_model"
+    check: "no_datetime_joins"
+    message: "DateTime fields should not be used for relationships - split into Date and Time"
+    severity: "error"
+    
+  - rule_type: "data_model"
+    check: "calendar_table_required"
+    message: "Healthcare analytics require a proper calendar table for time intelligence"
+    severity: "error"
+    
+  - rule_type: "measure_validation"
+    check: "patient_count_distinct"
+    message: "Patient counts must use DISTINCTCOUNT aggregation"
+    severity: "error"
+    
+  - rule_type: "sla_thresholds"
+    check: "no_hardcoded_sla"
+    message: "SLA thresholds should be parameterized, not hard-coded"
+    severity: "warning"
+    
+  - rule_type: "hipaa_compliance"
+    check: "patient_details_security"
+    message: "Patient Details dashboard requires proper RLS and audit logging"
+    severity: "critical"
+
+# Dashboard-specific configurations
+dashboards:
+  monthly_view:
+    name: "Monthly View"
+    description: "Primary executive dashboard with monthly operational snapshot"
+    mode: "month_filter"
+    kpis: "all"
+    visuals: 
+      - "admission_status_distribution"
+      - "age_group_distribution" 
+      - "department_referrals"
+      - "sla_compliance_gauge"
+      - "gender_distribution"
+      - "race_distribution"
+      - "day_hour_heatmap"
+    sparklines: true
+    
+  consolidated_view:
+    name: "Consolidated View"
+    description: "Flexible date range analysis"
+    mode: "date_range_filter"
+    reuse_visuals_from: "monthly_view"
+    additional_slicers:
+      - "date_range_slicer"
+      
+  patient_details:
+    name: "Patient Details"
+    description: "Row-level patient data for audits and compliance"
+    type: "table"
+    exportable: true
+    fields:
+      - "Patient ID"
+      - "Patient Admission Date"
+      - "Patient Wait Time"
+      - "Age Group"
+      - "Gender"
+      - "Race"
+      - "Admission Status"
+      - "Department Referral"
+      - "Patient Satisfaction Score"
+    filters:
+      - "date_range_slicer"
+      - "admission_status_filter"
+      - "gender_filter"
+    compliance_notes:
+      - "HIPAA: Ensure proper RLS is configured"
+      - "GDPR: Implement data retention policies"
+      - "Audit: Log all data exports and access"
+      
+  key_takeaways:
+    name: "Key Takeaways"
+    description: "Executive narrative insights and recommendations"
+    type: "narrative"
+    insights:
+      - title: "Operational Efficiency"
+        metric: "Average Wait Time"
+        analysis: "automated"
+      - title: "Capacity Management"
+        metric: "Peak Hour Analysis"
+        analysis: "automated"
+      - title: "SLA Performance"
+        metric: "30-Minute Compliance"
+        analysis: "automated"
+      - title: "Demographics"
+        metric: "Patient Distribution"
+        analysis: "automated"
+
+# DAX patterns for healthcare analytics
+dax_patterns:
+  patient_count: |
+    Number of Patients :=
+    DISTINCTCOUNT ( 'ER_Data'[Patient ID] )
+    
+  avg_wait_time: |
+    Avg Wait Time (min) :=
+    AVERAGE ( 'ER_Data'[Patient Wait Time] )
+    
+  patients_referred: |
+    Patients Referred :=
+    CALCULATE (
+        COUNTROWS ( 'ER_Data' ),
+        'ER_Data'[Department Referral] <> "None"
+    )
+    
+  sla_compliance: |
+    % Seen Within 30 Min :=
+    DIVIDE (
+        CALCULATE ( COUNTROWS ( 'ER_Data' ), 'ER_Data'[Patient Wait Time] <= 30 ),
+        COUNTROWS ( 'ER_Data' )
+    )
+    
+  admission_status: |
+    Admission Status :=
+    IF (
+        'ER_Data'[Patient Admission Flag] = TRUE(),
+        "Admitted",
+        "Not Admitted"
+    )
+    
+  age_groups: |
+    Age Group :=
+    SWITCH (
+        TRUE(),
+        'ER_Data'[Age] < 10, "0–9",
+        'ER_Data'[Age] < 20, "10–19",
+        'ER_Data'[Age] < 30, "20–29",
+        'ER_Data'[Age] < 40, "30–39",
+        'ER_Data'[Age] < 50, "40–49",
+        'ER_Data'[Age] < 60, "50–59",
+        'ER_Data'[Age] < 70, "60–69",
+        'ER_Data'[Age] < 80, "70–79",
+        "80+"
+    )

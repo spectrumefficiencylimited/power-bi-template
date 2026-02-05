@@ -1,0 +1,163 @@
+{
+  "module": {
+    "name": "_[Module Display Name]_",
+    "type": "card",
+    "category": "kpi",
+    "description": "_[Business purpose and usage description]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [
+      "_[Required table 1]_",
+      "_[Required table 2]_"
+    ],
+    "measures_required": [
+      "_[Required measure 1]_"
+    ],
+    "config": {
+      "visualType": "card",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "formatString": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Format: #,0|0.0%|$#,0|etc]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Organization primary color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "12L"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Text color for readability]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "24L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "activeProjections": {
+        "Values": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Source table name]_"
+                }
+              },
+              "Property": "_[Measure name]_"
+            }
+          }
+        ]
+      },
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "primary_color": "_[Organization primary color hex]_",
+      "secondary_color": "_[Organization secondary color hex]_",
+      "font_family": "_[Standard font family]_",
+      "logo_placement": "_[Logo positioning guidelines]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "font_size": "24L"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "font_size": "20L"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "font_size": "18L"
+      }
+    },
+    "accessibility": {
+      "aria_labels": "_[Screen reader descriptions]_",
+      "color_blind_safe": "_[Color blind accessibility notes]_",
+      "keyboard_navigation": "_[Keyboard interaction support]_"
+    },
+    "usage_notes": {
+      "placement": "_[Recommended placement in report]_",
+      "interactions": "_[Cross-filtering and drill-through behavior]_",
+      "mobile_behavior": "_[Mobile-specific adaptations]_",
+      "performance": "_[Performance considerations and load time impact]_"
+    },
+    "customization_options": {
+      "color_variants": "_[Available color scheme options]_",
+      "size_variants": "_[Different size configurations]_",
+      "data_variants": "_[Alternative data binding options]_"
+    }
+  }
+}

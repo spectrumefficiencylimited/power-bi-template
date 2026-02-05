@@ -1,0 +1,73 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "domain": "healthcare",
+  "validation_type": "data_model_healthcare",
+  "timestamp": "generated_at_runtime",
+  "rules": [
+    {
+      "rule_type": "data_model",
+      "check": "no_datetime_joins",
+      "message": "DateTime fields should not be used for relationships - split into Date and Time",
+      "severity": "error"
+    },
+    {
+      "rule_type": "data_model",
+      "check": "calendar_table_required",
+      "message": "Healthcare analytics require a proper calendar table for time intelligence",
+      "severity": "error"
+    },
+    {
+      "rule_type": "measure_validation",
+      "check": "patient_count_distinct",
+      "message": "Patient counts must use DISTINCTCOUNT aggregation",
+      "severity": "error"
+    },
+    {
+      "rule_type": "sla_thresholds",
+      "check": "no_hardcoded_sla",
+      "message": "SLA thresholds should be parameterized, not hard-coded",
+      "severity": "warning"
+    },
+    {
+      "rule_type": "hipaa_compliance",
+      "check": "patient_details_security",
+      "message": "Patient Details dashboard requires proper RLS and audit logging",
+      "severity": "critical"
+    },
+    {
+      "rule_type": "datetime_modeling",
+      "description": "Verify DateTime fields are properly split and modeled",
+      "check": "Ensure DateTime columns are split into separate Date and Time columns",
+      "severity": "error",
+      "healthcare_reason": "Healthcare analytics require precise time-based analysis for patient flow"
+    },
+    {
+      "rule_type": "calendar_table",
+      "description": "Verify calendar table exists for time intelligence",
+      "check": "Confirm calendar table is present and properly related to fact tables",
+      "severity": "error",
+      "healthcare_reason": "Required for patient admission trending and capacity planning"
+    },
+    {
+      "rule_type": "patient_count_validation",
+      "description": "Ensure patient counts use DISTINCTCOUNT",
+      "check": "All patient counting measures must use DISTINCTCOUNT aggregation",
+      "severity": "error",
+      "healthcare_reason": "Prevents double-counting patients across multiple records"
+    },
+    {
+      "rule_type": "sla_threshold_parameterization",
+      "description": "Verify SLA thresholds are parameterized",
+      "check": "SLA thresholds should not be hard-coded in DAX measures",
+      "severity": "warning",
+      "healthcare_reason": "SLA targets may vary by department or change over time"
+    },
+    {
+      "rule_type": "hipaa_compliance",
+      "description": "Verify patient privacy protections",
+      "check": "Patient Details dashboard requires RLS and audit logging",
+      "severity": "critical",
+      "healthcare_reason": "HIPAA requires protection of patient identifiable information"
+    }
+  ]
+}

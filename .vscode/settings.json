@@ -1,0 +1,32 @@
+{
+    "files.associations": {
+        "*.tmdl": "tmdl",
+        "*.pbir": "json"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "markdown.validate.enabled": true,
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        }
+    },
+    "[tmdl]": {
+        "editor.tabSize": 4
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/cache.abf": true,
+        "**/.pbi": true
+    },
+    "search.exclude": {
+        "**/cache.abf": true,
+        "**/.pbi": true
+    }
+}

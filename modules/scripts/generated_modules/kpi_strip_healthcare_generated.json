@@ -1,0 +1,64 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "kpi_strip",
+  "domain": "healthcare",
+  "cards": [
+    {
+      "field": "Patient ID",
+      "display_name": "Number of Patients",
+      "aggregation": "DISTINCTCOUNT",
+      "format": "#,0",
+      "display_units": "none",
+      "description": "Unique patients treated in selected period",
+      "primary_color": "#0066CC"
+    },
+    {
+      "field": "Patient Wait Time",
+      "display_name": "Avg Wait Time (min)",
+      "aggregation": "AVERAGE",
+      "format": "#,0.0",
+      "display_units": "none",
+      "description": "Average patient wait time in minutes",
+      "primary_color": "#0066CC"
+    },
+    {
+      "field": "Patient Satisfaction Score",
+      "display_name": "Satisfaction Score",
+      "aggregation": "AVERAGE",
+      "format": "#,0.0",
+      "display_units": "none",
+      "description": "Average patient satisfaction rating",
+      "primary_color": "#0066CC"
+    },
+    {
+      "field": "Department Referral",
+      "display_name": "Patients Referred",
+      "aggregation": "COUNTROWS_FILTERED",
+      "format": "#,0",
+      "display_units": "none",
+      "description": "Patients referred to other departments",
+      "primary_color": "#0066CC"
+    },
+    {
+      "field": "SLA_Compliance",
+      "display_name": "% Seen < 30 min",
+      "aggregation": "PERCENTAGE",
+      "format": "0.0%",
+      "display_units": "none",
+      "description": "Percentage of patients seen within 30-minute SLA",
+      "primary_color": "#0066CC"
+    }
+  ],
+  "validation_rules": [
+    {
+      "field": "Patient ID",
+      "rule": "DISTINCTCOUNT",
+      "reason": "Patient count must use DISTINCTCOUNT to avoid duplicate counting"
+    },
+    {
+      "field": "Patient Wait Time",
+      "rule": "AVERAGE",
+      "reason": "Wait time analysis requires average, not sum"
+    }
+  ]
+}

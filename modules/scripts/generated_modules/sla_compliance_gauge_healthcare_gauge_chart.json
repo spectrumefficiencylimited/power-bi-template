@@ -1,0 +1,253 @@
+{
+  "visual_id": "healthcare_gauge_chart",
+  "type": "gauge_chart",
+  "display_name": "Healthcare Gauge Chart",
+  "description": "Gauge visualization for healthcare performance metrics with target lines and color zones",
+  "category": "healthcare",
+  "validation": {
+    "required_fields": [
+      "value_field",
+      "target_value"
+    ],
+    "aggregation_rules": {
+      "value_field": [
+        "PERCENTAGE",
+        "AVERAGE",
+        "SUM",
+        "DIVIDE"
+      ],
+      "reason": "Gauge charts work with numeric and percentage measures"
+    },
+    "healthcare_specific": {
+      "target_required": true,
+      "color_zones_required": true
+    }
+  },
+  "template": {
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+    "name": "{name}",
+    "position": {
+      "x": "{x}",
+      "y": "{y}",
+      "width": "{width}",
+      "height": "{height}"
+    },
+    "visualType": "gauge",
+    "filters": [],
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "{dataset}"
+        }
+      ],
+      "Select": [
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "{value_field}"
+          },
+          "Name": "gauge_value"
+        }
+      ]
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "formatString": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{format}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "axis": [
+        {
+          "properties": {
+            "min": {
+              "expr": {
+                "Literal": {
+                  "Value": "{min_value}D"
+                }
+              }
+            },
+            "max": {
+              "expr": {
+                "Literal": {
+                  "Value": "{max_value}D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "target": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "{target_value}D"
+                }
+              }
+            },
+            "lineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'{primary_color}'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "calloutValue": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#333333'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#666666'"
+                    }
+                  }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "insights": {
+      "description": "Gauge chart with target line and color zones for healthcare performance monitoring.",
+      "use_cases": [
+        "Monitor SLA compliance against targets",
+        "Track patient satisfaction scores",
+        "Display operational efficiency metrics",
+        "Show performance against benchmarks"
+      ],
+      "healthcare_specific": {
+        "clinical_value": "Provides at-a-glance assessment of key performance indicators",
+        "operational_impact": "Enables quick identification of performance gaps",
+        "compliance": "Supports quality reporting and regulatory requirements"
+      }
+    }
+  },
+  "config_mapping": {
+    "name": "visuals[?].name",
+    "title": "visuals[?].title",
+    "x": "visuals[?].position.x",
+    "y": "visuals[?].position.y",
+    "width": "visuals[?].position.width",
+    "height": "visuals[?].position.height",
+    "value_field": "visuals[?].value_field",
+    "format": "visuals[?].format || '#,0.0'",
+    "min_value": "visuals[?].features.min_value || 0",
+    "max_value": "visuals[?].features.max_value || 100",
+    "target_value": "visuals[?].features.target_value || 80",
+    "primary_color": "branding.primary_color",
+    "dataset": "project.dataset"
+  },
+  "config_applied": {
+    "source_config": "..\\..\\config\\examples\\hospital_er.yaml",
+    "visual_name": "sla_compliance_gauge",
+    "domain": "healthcare"
+  }
+}

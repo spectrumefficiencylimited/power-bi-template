@@ -1,0 +1,352 @@
+{
+  "name": "_template_action-button",
+  "description": "Template for creating interactive action buttons for navigation or triggering actions",
+  "category": "layouts",
+  "visualType": "actionButton",
+  "config": {
+    "name": "{{VISUAL_ID}}",
+    "layouts": [
+      {
+        "id": 0,
+        "position": {
+          "x": "{{X_POSITION}}",
+          "y": "{{Y_POSITION}}",
+          "z": "{{Z_INDEX}}",
+          "width": "{{WIDTH}}",
+          "height": "{{HEIGHT}}",
+          "tabOrder": "{{TAB_ORDER}}"
+        }
+      }
+    ],
+    "singleVisual": {
+      "visualType": "actionButton",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "text": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{BUTTON_TEXT}}'"
+                  }
+                }
+              },
+              "actionType": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{ACTION_TYPE}}'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fill": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_FILL}}"
+                  }
+                }
+              },
+              "fillColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{FILL_COLOR_ID}}",
+                        "Percent": "{{FILL_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{FILL_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "outline": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_OUTLINE}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{OUTLINE_COLOR_ID}}",
+                        "Percent": "{{OUTLINE_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "weight": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{OUTLINE_WEIGHT}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "fontControl": [
+          {
+            "properties": {
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{FONT_FAMILY}}'"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{FONT_SIZE}}D"
+                  }
+                }
+              },
+              "fontColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{FONT_COLOR_ID}}",
+                        "Percent": "{{FONT_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "bold": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{FONT_BOLD}}"
+                  }
+                }
+              },
+              "italic": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{FONT_ITALIC}}"
+                  }
+                }
+              },
+              "underline": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{FONT_UNDERLINE}}"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "vcObjects": {
+        "background": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BACKGROUND}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{BACKGROUND_COLOR_ID}}",
+                        "Percent": "{{BACKGROUND_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{BACKGROUND_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BORDER}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'{{BORDER_COLOR}}'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "visualTooltip": [
+          {
+            "properties": {
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TOOLTIP_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "visualHeader": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_HEADER}}"
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{HEADER_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "defaultValues": {
+    "VISUAL_ID": "action-button-001",
+    "X_POSITION": "20",
+    "Y_POSITION": "20",
+    "Z_INDEX": "1000",
+    "WIDTH": "120",
+    "HEIGHT": "40",
+    "TAB_ORDER": "1000",
+    "BUTTON_TEXT": "Navigate",
+    "ACTION_TYPE": "Bookmark",
+    "SHOW_FILL": "true",
+    "FILL_COLOR_ID": "1",
+    "FILL_COLOR_PERCENT": "0",
+    "FILL_TRANSPARENCY": "0",
+    "SHOW_OUTLINE": "true", 
+    "OUTLINE_COLOR_ID": "0",
+    "OUTLINE_COLOR_PERCENT": "0",
+    "OUTLINE_WEIGHT": "1",
+    "FONT_FAMILY": "Calibri",
+    "FONT_SIZE": "12",
+    "FONT_COLOR_ID": "0",
+    "FONT_COLOR_PERCENT": "0",
+    "FONT_BOLD": "false",
+    "FONT_ITALIC": "false",
+    "FONT_UNDERLINE": "false",
+    "SHOW_BACKGROUND": "false",
+    "BACKGROUND_COLOR_ID": "1",
+    "BACKGROUND_COLOR_PERCENT": "0.2",
+    "BACKGROUND_TRANSPARENCY": "0",
+    "SHOW_BORDER": "false",
+    "BORDER_COLOR": "#cccccc",
+    "TOOLTIP_TRANSPARENCY": "0",
+    "SHOW_HEADER": "false",
+    "HEADER_TRANSPARENCY": "0"
+  },
+  "placeholders": [
+    {
+      "name": "VISUAL_ID",
+      "description": "Unique identifier for the action button visual",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "BUTTON_TEXT", 
+      "description": "Text displayed on the button",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "ACTION_TYPE",
+      "description": "Type of action (Bookmark, Page navigation, URL, etc.)",
+      "required": true,
+      "type": "string",
+      "allowedValues": ["Bookmark", "Page navigation", "URL", "Q&A", "Back"]
+    },
+    {
+      "name": "X_POSITION",
+      "description": "Horizontal position on the canvas",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "Y_POSITION",
+      "description": "Vertical position on the canvas",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "WIDTH",
+      "description": "Width of the action button",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "HEIGHT", 
+      "description": "Height of the action button",
+      "required": true,
+      "type": "number"
+    }
+  ],
+  "useCases": [
+    "Navigation between report pages",
+    "Triggering bookmarks and saved states", 
+    "Opening external URLs or documents",
+    "Launching Q&A experiences",
+    "Creating interactive dashboards"
+  ],
+  "dependencies": [],
+  "validation": {
+    "requiredProperties": ["VISUAL_ID", "BUTTON_TEXT", "ACTION_TYPE"],
+    "positionBounds": {
+      "x": {"min": 0, "max": 1280},
+      "y": {"min": 0, "max": 720},
+      "width": {"min": 50, "max": 400},
+      "height": {"min": 20, "max": 100}
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "donut_chart",
+  "domain": "healthcare",
+  "name": "race_distribution",
+  "title": "Patients by Race",
+  "position": {
+    "x": 900,
+    "y": 380,
+    "width": 280,
+    "height": 200
+  },
+  "data_config": {
+    "category_field": "Race",
+    "value_field": "Patient ID",
+    "value_aggregation": "DISTINCTCOUNT"
+  },
+  "style": {
+    "primary_color": "#0066CC",
+    "secondary_color": "#F8F9FA",
+    "accent_color": "#28A745",
+    "alert_color": "#DC3545"
+  },
+  "features": {
+    "show_percentage": true,
+    "inner_radius": 40
+  },
+  "insights": [
+    "Monitor demographic diversity",
+    "Ensure equitable care access"
+  ]
+}

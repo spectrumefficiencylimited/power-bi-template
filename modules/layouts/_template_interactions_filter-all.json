@@ -1,0 +1,178 @@
+{
+  "module_type": "interaction_rules",
+  "template_name": "filter-all-interactions",
+  "description": "Interaction rules template based on Adidas dashboard pattern - sets all interactions to Filter for better drill-down analysis",
+  "version": "1.0",
+  "pattern_source": "adidas_sales_executive_dashboard",
+  "rules": [
+    {
+      "rule_id": "default_filter_behavior",
+      "name": "Default Filter Behavior",
+      "source_visual_type": "*",
+      "target_visual_type": "*",
+      "interaction_type": "filter",
+      "priority": 1,
+      "description": "All visuals should filter other visuals, not highlight",
+      "rationale": "Enables drill-down analysis rather than just highlighting patterns"
+    },
+    {
+      "rule_id": "slicer_filter_all",
+      "name": "Slicer Filters All",
+      "source_visual_type": "slicer",
+      "target_visual_type": "*",
+      "interaction_type": "filter",
+      "priority": 2,
+      "description": "All slicers filter all visuals on the page",
+      "rationale": "Slicers should always filter to enable comparative analysis"
+    },
+    {
+      "rule_id": "kpi_no_interactions", 
+      "name": "KPI Cards No Interactions",
+      "source_visual_type": "card",
+      "target_visual_type": "*",
+      "interaction_type": "none",
+      "priority": 3,
+      "description": "KPI cards should not send interactions to other visuals",
+      "rationale": "KPI cards are summary displays and don't need to filter other visuals"
+    },
+    {
+      "rule_id": "chart_cross_filter",
+      "name": "Chart Cross-Filtering",
+      "source_visual_type": ["barChart", "columnChart", "lineChart", "areaChart", "donutChart", "pieChart"],
+      "target_visual_type": ["barChart", "columnChart", "lineChart", "areaChart", "donutChart", "pieChart", "map", "table"],
+      "interaction_type": "filter",
+      "priority": 4,
+      "description": "Charts should cross-filter other analytical visuals",
+      "rationale": "Enables comparative analysis across different dimensions"
+    },
+    {
+      "rule_id": "map_filter_charts",
+      "name": "Map Filters Charts",
+      "source_visual_type": "map",
+      "target_visual_type": ["barChart", "columnChart", "lineChart", "areaChart", "donutChart"],
+      "interaction_type": "filter",
+      "priority": 5,
+      "description": "Geographic selection filters other analytical visuals",
+      "rationale": "Geographic filtering is key for regional performance analysis"
+    },
+    {
+      "rule_id": "disable_highlight_globally",
+      "name": "Disable Highlight Globally", 
+      "source_visual_type": "*",
+      "target_visual_type": "*",
+      "interaction_type": "none",
+      "interaction_subtype": "highlight",
+      "priority": 6,
+      "description": "Disable all highlight interactions in favor of filtering",
+      "rationale": "Highlighting can be confusing; filtering provides clearer analysis"
+    }
+  ],
+  "power_bi_implementation": {
+    "edit_interactions": {
+      "steps": [
+        "Select source visual",
+        "Click 'Edit interactions' in Format tab",
+        "Set all target visuals to 'Filter' icon",
+        "Avoid using 'Highlight' icon",
+        "For KPI cards, set to 'None' icon"
+      ],
+      "validation": "Test each interaction by clicking visuals to ensure filtering behavior"
+    },
+    "programmatic_config": {
+      "interactions_json": {
+        "crossFilteringBehavior": "FilterOthers",
+        "highlightingBehavior": "None",
+        "drillThroughBehavior": "Enabled"
+      }
+    }
+  },
+  "dashboard_patterns": {
+    "executive_summary": {
+      "description": "High-level dashboard with minimal interactions",
+      "recommended_rules": ["default_filter_behavior", "slicer_filter_all", "kpi_no_interactions"]
+    },
+    "analytical_deep_dive": {
+      "description": "Detailed analysis with extensive cross-filtering",
+      "recommended_rules": ["default_filter_behavior", "slicer_filter_all", "chart_cross_filter", "map_filter_charts"]
+    },
+    "operational_monitoring": {
+      "description": "Real-time monitoring with selective filtering", 
+      "recommended_rules": ["slicer_filter_all", "kpi_no_interactions"]
+    }
+  },
+  "visual_type_mappings": {
+    "power_bi_types": {
+      "card": "KPI card visual",
+      "slicer": "Filter slicer visual",
+      "barChart": "Bar chart visual",
+      "columnChart": "Column chart visual", 
+      "lineChart": "Line chart visual",
+      "areaChart": "Area chart visual",
+      "donutChart": "Donut chart visual",
+      "pieChart": "Pie chart visual",
+      "map": "Map visual (filled or shape)",
+      "table": "Table visual",
+      "matrix": "Matrix visual"
+    }
+  },
+  "validation_checks": [
+    {
+      "check_name": "no_highlight_interactions",
+      "description": "Verify no visuals are set to highlight mode",
+      "validation_script": "scan for 'highlight' in interaction configurations"
+    },
+    {
+      "check_name": "slicers_filter_all",
+      "description": "Verify all slicers are set to filter all target visuals",
+      "validation_script": "scan slicer configurations for filter settings"
+    },
+    {
+      "check_name": "kpi_cards_no_output",
+      "description": "Verify KPI cards don't send interactions to other visuals",
+      "validation_script": "scan card visual configurations for interaction settings"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "mistake": "Leaving default highlight behavior",
+      "impact": "Users get confused by highlighting vs filtering",
+      "solution": "Explicitly set all interactions to filter mode"
+    },
+    {
+      "mistake": "KPI cards sending interactions",
+      "impact": "Unexpected filtering when clicking summary metrics",
+      "solution": "Set KPI card interactions to 'None'"
+    },
+    {
+      "mistake": "Inconsistent interaction patterns",
+      "impact": "Unpredictable user experience across dashboard",
+      "solution": "Apply consistent interaction rules across all visuals"
+    }
+  ],
+  "testing_checklist": [
+    "Click each chart - should filter others, not highlight",
+    "Use slicers - should filter all relevant visuals", 
+    "Click KPI cards - should not affect other visuals",
+    "Test geographic map - should filter charts when regions selected",
+    "Verify no yellow highlighting appears on any interactions",
+    "Test interaction reset - all filters should clear properly"
+  ],
+  "benefits": {
+    "user_experience": "Clear, predictable filtering behavior",
+    "analysis_capability": "Enables proper drill-down and comparative analysis", 
+    "performance": "Faster than complex highlighting calculations",
+    "accessibility": "Clearer visual feedback for users with visual impairments"
+  },
+  "migration_notes": {
+    "from_highlight_to_filter": {
+      "steps": [
+        "Audit existing dashboard interactions",
+        "Document current highlighting behavior",
+        "Apply filter rules systematically",
+        "Test with end users",
+        "Update user training materials"
+      ],
+      "communication": "Explain to users that filtering provides better analysis capabilities than highlighting"
+    }
+  }
+}

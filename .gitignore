@@ -1,0 +1,46 @@
+# Power BI PBIP Cache Files
+# These contain data and should never be committed
+*.abf
+cache.abf
+
+# Power BI local state
+.pbi/
+
+# Power BI Desktop temporary files
+*.pbix.tmp
+*.pbit.tmp
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Node modules (if using any build tools)
+node_modules/
+
+# Python virtual environments
+venv/
+.env/
+__pycache__/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.backup
+*~

@@ -1,0 +1,19 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "slicer",
+  "domain": "healthcare",
+  "name": "month_year_slicer",
+  "field": "Month Year",
+  "title": "Month-Year",
+  "style": "dropdown",
+  "multi_select": false,
+  "select_all": false,
+  "position": {
+    "x": 20,
+    "y": 20,
+    "width": 200,
+    "height": 80
+  },
+  "default_selection": "current_month",
+  "dashboard_visibility": []
+}

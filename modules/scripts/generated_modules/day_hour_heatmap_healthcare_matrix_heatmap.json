@@ -1,0 +1,278 @@
+{
+  "visual_id": "healthcare_day_hour_heatmap",
+  "type": "matrix_heatmap",
+  "display_name": "Day & Hour Patient Heatmap",
+  "description": "Healthcare matrix visualization showing patient volume by day of week and hour",
+  "category": "healthcare",
+  "validation": {
+    "required_fields": [
+      "rows_field",
+      "columns_field",
+      "value_field"
+    ],
+    "aggregation_rules": {
+      "value_field": [
+        "DISTINCTCOUNT",
+        "COUNT",
+        "COUNTROWS"
+      ],
+      "reason": "Patient volumes should use count-based aggregations"
+    },
+    "healthcare_specific": {
+      "time_intelligence": "required",
+      "calendar_table": "required"
+    }
+  },
+  "template": {
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+    "name": "{name}",
+    "position": {
+      "x": "{x}",
+      "y": "{y}",
+      "width": "{width}",
+      "height": "{height}"
+    },
+    "visualType": "matrix",
+    "filters": [],
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "{dataset}"
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "{rows_field}"
+          },
+          "Name": "rows_field"
+        },
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "{columns_field}"
+          },
+          "Name": "columns_field"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "e"
+                  }
+                },
+                "Property": "{value_field}"
+              }
+            },
+            "Function": "{aggregation_function}"
+          },
+          "Name": "value_aggregate"
+        }
+      ],
+      "OrderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Aggregation": {
+              "Expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Source": "e"
+                    }
+                  },
+                  "Property": "{value_field}"
+                }
+              },
+              "Function": "{aggregation_function}"
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "formatString": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{format}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#666666'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#666666'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataColors": [
+        {
+          "properties": {
+            "colorScheme": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sequential'"
+                }
+              }
+            },
+            "fillRule": {
+              "linearGradient2": {
+                "min": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#F8F9FA'"
+                      }
+                    }
+                  }
+                },
+                "max": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#0066CC'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "insights": {
+      "description": "Matrix heatmap showing patient volume patterns by day of week and hour of day. Darker cells indicate higher patient volumes.",
+      "use_cases": [
+        "Identify peak congestion periods",
+        "Optimize staffing schedules",
+        "Plan capacity management",
+        "Analyze temporal patterns in healthcare delivery"
+      ],
+      "healthcare_specific": {
+        "clinical_value": "Enables evidence-based staffing decisions and resource allocation",
+        "operational_impact": "Reduces wait times through better capacity planning",
+        "compliance": "Supports Joint Commission requirements for patient flow optimization"
+      }
+    }
+  },
+  "config_mapping": {
+    "name": "visuals[?].name",
+    "title": "visuals[?].title",
+    "x": "visuals[?].position.x",
+    "y": "visuals[?].position.y",
+    "width": "visuals[?].position.width",
+    "height": "visuals[?].position.height",
+    "rows_field": "visuals[?].rows_field",
+    "columns_field": "visuals[?].columns_field",
+    "value_field": "visuals[?].value_field",
+    "aggregation_function": "visuals[?].value_aggregation",
+    "format": "visuals[?].format || '#,0'",
+    "dataset": "project.dataset"
+  },
+  "config_applied": {
+    "source_config": "..\\..\\config\\examples\\hospital_er.yaml",
+    "visual_name": "day_hour_heatmap",
+    "domain": "healthcare"
+  }
+}

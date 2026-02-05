@@ -1,0 +1,234 @@
+{
+  "module": {
+    "name": "_[Funnel Chart Display Name]_",
+    "type": "funnel",
+    "category": "charts",
+    "description": "_[Conversion flow analysis purpose and usage description]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [
+      "_[Process stage table]_",
+      "_[Primary data table]_"
+    ],
+    "measures_required": [
+      "_[Primary conversion measure]_",
+      "_[Stage count measure]_"
+    ],
+    "config": {
+      "visualType": "funnel",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "responsive": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataLabels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Data label text color]_'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataPoint": [
+          {
+            "properties": {
+              "defaultColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Organization primary color hex]_'"
+                      }
+                    }
+                  }
+                }
+              },
+              "categoryGradient": {
+                "startColor": {
+                  "solid": {
+                    "color": {
+                      "expr": {
+                        "Literal": {
+                          "Value": "'_[Funnel start color]_'"
+                        }
+                      }
+                    }
+                  }
+                },
+                "endColor": {
+                  "solid": {
+                    "color": {
+                      "expr": {
+                        "Literal": {
+                          "Value": "'_[Funnel end color]_'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "activeProjections": {
+        "Category": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Stage table name]_"
+                }
+              },
+              "Property": "_[Stage field name]_"
+            }
+          }
+        ],
+        "Y": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Data table name]_"
+                }
+              },
+              "Property": "_[Conversion measure name]_"
+            }
+          }
+        ]
+      },
+      "orderBy": [
+        {
+          "Direction": 2,
+          "Expression": {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Data table name]_"
+                }
+              },
+              "Property": "_[Conversion measure name]_"
+            }
+          }
+        }
+      ],
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "color_gradient": {
+        "start": "_[Light color for top of funnel]_",
+        "end": "_[Dark color for bottom of funnel]_"
+      },
+      "font_family": "_[Standard font family]_",
+      "funnel_style": "_[Modern|Classic|Minimal]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "data_labels": "true",
+        "category_labels": "true"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "data_labels": "true",
+        "category_labels": "false"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "data_labels": "false",
+        "category_labels": "false"
+      }
+    },
+    "accessibility": {
+      "color_blind_patterns": "_[Different patterns for each funnel stage]_",
+      "high_contrast_mode": "_[High contrast color scheme]_",
+      "aria_labels": "_[Funnel description for screen readers]_"
+    },
+    "usage_notes": {
+      "analysis_type": "Conversion funnel and process flow analysis",
+      "best_practices": "_[When to use funnel charts vs other chart types]_",
+      "data_requirements": "_[Sequential process data with decreasing values]_",
+      "interaction_behavior": "_[Cross-filtering and drill-through capabilities]_"
+    },
+    "customization_options": {
+      "funnel_orientation": "_[Vertical|Horizontal orientation options]_",
+      "conversion_rates": "_[Show conversion percentages between stages]_",
+      "color_coding": "_[Gradient|Categorical|Performance-based coloring]_",
+      "stage_spacing": "_[Proportional|Equal spacing between stages]_"
+    }
+  }
+}

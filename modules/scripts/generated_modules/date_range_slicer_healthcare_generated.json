@@ -1,0 +1,22 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "slicer",
+  "domain": "healthcare",
+  "name": "date_range_slicer",
+  "field": "Patient Admission Date",
+  "title": "Date Range",
+  "style": "between",
+  "multi_select": true,
+  "select_all": true,
+  "position": {
+    "x": 20,
+    "y": 120,
+    "width": 200,
+    "height": 80
+  },
+  "default_selection": "last_30_days",
+  "dashboard_visibility": [
+    "Consolidated View",
+    "Patient Details"
+  ]
+}

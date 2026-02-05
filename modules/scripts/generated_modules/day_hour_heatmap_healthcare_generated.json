@@ -1,0 +1,39 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "matrix_heatmap",
+  "domain": "healthcare",
+  "name": "day_hour_heatmap",
+  "title": "Patients by Day & Hour",
+  "position": {
+    "x": 300,
+    "y": 600,
+    "width": 880,
+    "height": 300
+  },
+  "data_config": {
+    "value_field": "Patient ID",
+    "rows_field": "Day of Week",
+    "columns_field": "Hour of Day",
+    "value_aggregation": "DISTINCTCOUNT"
+  },
+  "style": {
+    "primary_color": "#0066CC",
+    "secondary_color": "#F8F9FA",
+    "accent_color": "#28A745",
+    "alert_color": "#DC3545"
+  },
+  "features": {
+    "color_scale": "sequential",
+    "show_values": true,
+    "conditional_formatting": true
+  },
+  "insights": [
+    "Identify peak congestion periods",
+    "Optimize staffing schedules",
+    "Plan capacity management"
+  ],
+  "healthcare_specific": {
+    "clinical_value": "Supports evidence-based decision making",
+    "compliance_notes": "Aligns with Joint Commission and CMS standards"
+  }
+}

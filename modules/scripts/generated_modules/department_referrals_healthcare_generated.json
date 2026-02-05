@@ -1,0 +1,32 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "horizontal_bar_chart",
+  "domain": "healthcare",
+  "name": "department_referrals",
+  "title": "Patients by Department Referral",
+  "position": {
+    "x": 900,
+    "y": 160,
+    "width": 280,
+    "height": 200
+  },
+  "data_config": {
+    "category_field": "Department Referral",
+    "value_field": "Patient ID",
+    "value_aggregation": "DISTINCTCOUNT"
+  },
+  "style": {
+    "primary_color": "#0066CC",
+    "secondary_color": "#F8F9FA",
+    "accent_color": "#28A745",
+    "alert_color": "#DC3545"
+  },
+  "features": {
+    "sort_by_value": true,
+    "exclude_none": true
+  },
+  "insights": [
+    "Monitor referral patterns",
+    "Identify department bottlenecks"
+  ]
+}

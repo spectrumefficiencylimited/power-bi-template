@@ -1,0 +1,21 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "slicer",
+  "domain": "healthcare",
+  "name": "admission_status_filter",
+  "field": "Admission Status",
+  "title": "Admission Status",
+  "style": "list",
+  "multi_select": true,
+  "select_all": true,
+  "position": {
+    "x": 20,
+    "y": 220,
+    "width": 200,
+    "height": 100
+  },
+  "default_selection": "all",
+  "dashboard_visibility": [
+    "Patient Details"
+  ]
+}

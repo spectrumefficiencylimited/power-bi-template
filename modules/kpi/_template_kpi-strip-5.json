@@ -1,0 +1,244 @@
+{
+  "module_type": "kpi_strip",
+  "template_name": "5-card-executive-kpi-strip",
+  "description": "Five-card KPI strip for executive dashboards based on Adidas sales pattern",
+  "version": "1.0",
+  "layout": {
+    "type": "horizontal_strip",
+    "cards": 5,
+    "total_width": 1200,
+    "card_width": 220,
+    "card_height": 120,
+    "gap": 20,
+    "margin": 10
+  },
+  "cards": [
+    {
+      "position": 1,
+      "title": "Total Sales",
+      "field_binding": "{{sales_field}}",
+      "aggregation": "sum",
+      "format": "currency0",
+      "display_units": "millions",
+      "icon": "💰",
+      "description": "Total revenue across all channels",
+      "style": {
+        "background_color": "#FFFFFF",
+        "border": true,
+        "border_color": "#E0E0E0",
+        "border_width": 1,
+        "accent_bar": {
+          "enabled": true,
+          "width": 4,
+          "color": "{{primary_color}}"
+        },
+        "title": {
+          "font_size": 12,
+          "font_weight": "normal",
+          "color": "#666666"
+        },
+        "value": {
+          "font_size": 24,
+          "font_weight": "bold",
+          "color": "#333333"
+        }
+      }
+    },
+    {
+      "position": 2,
+      "title": "Operating Profit",
+      "field_binding": "{{profit_field}}",
+      "aggregation": "sum",
+      "format": "currency0",
+      "display_units": "millions",
+      "icon": "📈",
+      "description": "Profit after operating expenses",
+      "style": {
+        "background_color": "#FFFFFF",
+        "border": true,
+        "border_color": "#E0E0E0",
+        "border_width": 1,
+        "accent_bar": {
+          "enabled": true,
+          "width": 4,
+          "color": "{{primary_color}}"
+        },
+        "title": {
+          "font_size": 12,
+          "font_weight": "normal",
+          "color": "#666666"
+        },
+        "value": {
+          "font_size": 24,
+          "font_weight": "bold",
+          "color": "#333333"
+        }
+      }
+    },
+    {
+      "position": 3,
+      "title": "Units Sold",
+      "field_binding": "{{units_field}}",
+      "aggregation": "sum",
+      "format": "whole0",
+      "display_units": "auto",
+      "icon": "📦",
+      "description": "Total product units sold",
+      "style": {
+        "background_color": "#FFFFFF",
+        "border": true,
+        "border_color": "#E0E0E0",
+        "border_width": 1,
+        "accent_bar": {
+          "enabled": true,
+          "width": 4,
+          "color": "{{primary_color}}"
+        },
+        "title": {
+          "font_size": 12,
+          "font_weight": "normal",
+          "color": "#666666"
+        },
+        "value": {
+          "font_size": 24,
+          "font_weight": "bold",
+          "color": "#333333"
+        }
+      }
+    },
+    {
+      "position": 4,
+      "title": "Avg Price/Unit",
+      "field_binding": "{{price_per_unit_field}}",
+      "aggregation": "average",
+      "format": "currency0",
+      "display_units": "auto",
+      "icon": "🏷️",
+      "description": "Average selling price per unit",
+      "validation": {
+        "aggregation_must_be": "average",
+        "reason": "Unit price should be averaged across transactions, not summed"
+      },
+      "style": {
+        "background_color": "#FFFFFF",
+        "border": true,
+        "border_color": "#E0E0E0", 
+        "border_width": 1,
+        "accent_bar": {
+          "enabled": true,
+          "width": 4,
+          "color": "{{accent_color}}"
+        },
+        "title": {
+          "font_size": 12,
+          "font_weight": "normal",
+          "color": "#666666"
+        },
+        "value": {
+          "font_size": 24,
+          "font_weight": "bold",
+          "color": "#333333"
+        }
+      }
+    },
+    {
+      "position": 5,
+      "title": "Avg Operating Margin",
+      "field_binding": "{{margin_field}}",
+      "aggregation": "average",
+      "format": "percent0",
+      "display_units": "auto",
+      "icon": "📊",
+      "description": "Average operating margin percentage",
+      "validation": {
+        "aggregation_must_be": "average",
+        "format_must_be": "percent",
+        "reason": "Margin should be averaged and displayed as percentage"
+      },
+      "style": {
+        "background_color": "#FFFFFF",
+        "border": true,
+        "border_color": "#E0E0E0",
+        "border_width": 1,
+        "accent_bar": {
+          "enabled": true,
+          "width": 4,
+          "color": "{{accent_color}}"
+        },
+        "title": {
+          "font_size": 12,
+          "font_weight": "normal",
+          "color": "#666666"
+        },
+        "value": {
+          "font_size": 24,
+          "font_weight": "bold",
+          "color": "#333333"
+        }
+      }
+    }
+  ],
+  "responsive": {
+    "mobile": {
+      "layout": "vertical_stack",
+      "card_width": "100%",
+      "card_height": 80,
+      "font_sizes": {
+        "title": 10,
+        "value": 18
+      }
+    },
+    "tablet": {
+      "layout": "horizontal_strip",
+      "card_width": 180,
+      "card_height": 100,
+      "gap": 15,
+      "font_sizes": {
+        "title": 11,
+        "value": 20
+      }
+    }
+  },
+  "accessibility": {
+    "aria_labels": {
+      "strip": "Key Performance Indicators",
+      "card_template": "{{title}}: {{value}}"
+    },
+    "high_contrast": {
+      "border_color": "#000000",
+      "background_color": "#FFFFFF",
+      "text_color": "#000000"
+    },
+    "keyboard_navigation": true
+  },
+  "power_bi_config": {
+    "visual_type": "card",
+    "container_type": "group",
+    "interactions": {
+      "allow_cross_filter": false,
+      "allow_drill_through": false
+    }
+  },
+  "usage_instructions": {
+    "field_binding": {
+      "sales_field": "Map to your total sales/revenue field",
+      "profit_field": "Map to your operating profit field",
+      "units_field": "Map to your units sold field", 
+      "price_per_unit_field": "Map to your price per unit field (will use AVERAGE)",
+      "margin_field": "Map to your margin field (will use AVERAGE and % format)"
+    },
+    "color_binding": {
+      "primary_color": "Your brand primary color (hex)",
+      "accent_color": "Your brand accent color (hex, used for average fields)"
+    },
+    "validation": "Run validation_tools.py to ensure proper aggregations"
+  },
+  "insights_template": {
+    "narrative": "The KPI strip provides immediate visibility into {sales_period} performance with {sales_value} in total sales and {margin_value} average margin.",
+    "patterns": [
+      "Peak performance in {peak_month}",
+      "Margin trends: {margin_direction}",
+      "Unit economics: {price_trend}"
+    ]
+  }
+}

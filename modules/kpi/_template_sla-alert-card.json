@@ -1,0 +1,204 @@
+{
+  "visual_id": "healthcare_sla_alert_card",
+  "type": "sla_alert_card",
+  "display_name": "SLA Alert Card",
+  "description": "Healthcare alert card showing SLA compliance with visual status indicators",
+  "category": "healthcare",
+  "validation": {
+    "required_fields": ["value_field", "target_value"],
+    "aggregation_rules": {
+      "value_field": ["PERCENTAGE", "DIVIDE"],
+      "reason": "SLA compliance should be expressed as percentage"
+    },
+    "healthcare_specific": {
+      "threshold_validation": "no_hardcoded_values",
+      "alert_levels": "required"
+    }
+  },
+  "template": {
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+    "name": "{name}",
+    "position": {
+      "x": "{x}",
+      "y": "{y}",
+      "width": "{width}",
+      "height": "{height}"
+    },
+    "visualType": "card",
+    "filters": [],
+    "prototypeQuery": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "e",
+          "Entity": "{dataset}"
+        }
+      ],
+      "Select": [
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "e"
+              }
+            },
+            "Property": "{value_field}"
+          },
+          "Name": "sla_value"
+        }
+      ]
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "formatString": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{format}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "calloutValue": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "36D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'{alert_color}'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#666666'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'{alert_color}'"
+                    }
+                  }
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "wordWrap": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "insights": {
+      "description": "Alert card displaying SLA compliance with color-coded status indicators based on performance thresholds.",
+      "use_cases": [
+        "Monitor real-time SLA performance",
+        "Provide immediate visual alerts for performance issues",
+        "Track compliance against regulatory standards",
+        "Enable quick executive decision-making"
+      ],
+      "healthcare_specific": {
+        "clinical_value": "Supports quality metrics and patient safety standards",
+        "operational_impact": "Enables proactive response to performance degradation",
+        "compliance": "Aligns with Joint Commission and CMS quality measures"
+      },
+      "alert_zones": {
+        "critical": "0-70% (Red) - Immediate action required",
+        "warning": "70-85% (Yellow) - Monitor closely",
+        "target": "85-100% (Green) - Meeting expectations"
+      }
+    }
+  },
+  "config_mapping": {
+    "name": "visuals[?].name",
+    "title": "visuals[?].title",
+    "x": "visuals[?].position.x",
+    "y": "visuals[?].position.y", 
+    "width": "visuals[?].position.width",
+    "height": "visuals[?].position.height",
+    "value_field": "visuals[?].value_field",
+    "format": "visuals[?].format || '0.0%'",
+    "alert_color": "visuals[?].features.color_zones[?].color",
+    "dataset": "project.dataset"
+  }
+}

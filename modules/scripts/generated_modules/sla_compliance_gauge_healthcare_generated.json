@@ -1,0 +1,53 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "gauge_chart",
+  "domain": "healthcare",
+  "name": "sla_compliance_gauge",
+  "title": "% Patients Seen Within 30 Minutes",
+  "position": {
+    "x": 300,
+    "y": 380,
+    "width": 280,
+    "height": 200
+  },
+  "data_config": {
+    "value_field": "SLA_Compliance",
+    "value_aggregation": "PERCENTAGE"
+  },
+  "style": {
+    "primary_color": "#0066CC",
+    "secondary_color": "#F8F9FA",
+    "accent_color": "#28A745",
+    "alert_color": "#DC3545"
+  },
+  "features": {
+    "target_value": 85,
+    "min_value": 0,
+    "max_value": 100,
+    "color_zones": [
+      {
+        "min": 0,
+        "max": 70,
+        "color": "#DC3545"
+      },
+      {
+        "min": 70,
+        "max": 85,
+        "color": "#FFC107"
+      },
+      {
+        "min": 85,
+        "max": 100,
+        "color": "#28A745"
+      }
+    ]
+  },
+  "insights": [
+    "Monitor SLA compliance",
+    "Identify performance issues"
+  ],
+  "healthcare_specific": {
+    "clinical_value": "Supports evidence-based decision making",
+    "compliance_notes": "Aligns with Joint Commission and CMS standards"
+  }
+}

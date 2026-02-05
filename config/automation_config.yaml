@@ -1,0 +1,189 @@
+# Power BI PBIP Project Automation Configuration
+# This configuration file controls the behavior of the automation orchestrator
+# for comprehensive PBIP project analysis, modernization, and migration
+
+# Workspace and project paths
+workspace_path: "c:/Users/mstoian/R/Power BI"
+template_path: "pbip-template"
+output_path: "automation_outputs"
+
+# Backup and safety settings
+backup_enabled: true
+validation_enabled: true
+generate_documentation: true
+
+# Migration target settings
+migration_target: "sql_gold_layer"
+target_architecture: "modern_cloud_analytics"
+
+# Module types to generate
+module_types:
+  - "kpi"
+  - "charts" 
+  - "filters"
+  - "layouts"
+
+# Automation behavior settings
+automation_settings:
+  auto_create_backups: true
+  auto_validate_outputs: true
+  auto_generate_documentation: true
+  parallel_processing: false  # Set to true for faster processing if supported
+  
+  # Quality thresholds
+  minimum_analysis_score: 80
+  minimum_module_quality: 85
+  minimum_migration_readiness: 70
+
+# Analysis configuration
+analysis_config:
+  extract_all_visuals: true
+  analyze_data_lineage: true
+  identify_business_rules: true
+  map_user_journeys: true
+  extract_branding_elements: true
+  calculate_complexity_scores: true
+  
+  # Visual analysis settings
+  visual_analysis:
+    include_layout_analysis: true
+    extract_formatting_rules: true
+    identify_interaction_patterns: true
+    analyze_performance_implications: true
+
+# Module generation configuration
+module_generation:
+  standardize_naming: true
+  apply_best_practices: true
+  include_documentation: true
+  generate_usage_examples: true
+  
+  # Template customization
+  template_customization:
+    apply_corporate_branding: true
+    standardize_color_schemes: true
+    optimize_for_mobile: true
+    include_accessibility_features: true
+
+# Migration planning configuration
+migration_planning:
+  assess_technical_debt: true
+  identify_performance_bottlenecks: true
+  map_data_dependencies: true
+  estimate_migration_effort: true
+  create_rollback_plans: true
+  
+  # SQL Gold Layer settings
+  sql_gold_layer:
+    target_platform: "azure_synapse"
+    data_modeling_approach: "dimensional"
+    refresh_strategy: "incremental"
+    security_model: "row_level_security"
+
+# Validation configuration
+validation_config:
+  validate_json_structure: true
+  check_data_integrity: true
+  verify_visual_compatibility: true
+  test_performance_impact: true
+  validate_security_compliance: true
+  
+  # Quality gates
+  quality_gates:
+    block_on_critical_errors: true
+    warn_on_complexity_threshold: 8
+    require_documentation: true
+
+# Documentation generation settings
+documentation_config:
+  generate_executive_summary: true
+  include_technical_details: true
+  create_user_guides: true
+  generate_api_documentation: true
+  
+  # Output formats
+  output_formats:
+    - "markdown"
+    - "json"
+    - "pdf"  # If supported
+  
+  # Documentation sections
+  sections:
+    executive_summary: true
+    technical_analysis: true
+    business_knowledge: true
+    module_inventory: true
+    migration_roadmap: true
+    validation_results: true
+    implementation_guide: true
+
+# Performance and resource settings
+performance_config:
+  max_concurrent_operations: 4
+  memory_limit_mb: 2048
+  timeout_minutes: 30
+  
+  # Caching settings
+  enable_caching: true
+  cache_expiry_hours: 24
+
+# Logging and monitoring
+logging_config:
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_to_file: true
+  log_to_console: true
+  detailed_performance_logging: true
+  
+  # Log retention
+  max_log_files: 10
+  max_log_size_mb: 100
+
+# Integration settings
+integration_config:
+  # Azure DevOps integration
+  azure_devops:
+    enabled: false
+    organization: "your_org"
+    project: "power_bi_modernization"
+  
+  # Power BI Service integration
+  power_bi_service:
+    enabled: false
+    workspace_id: "your_workspace_id"
+    
+  # Azure Synapse integration
+  azure_synapse:
+    enabled: false
+    workspace_name: "your_synapse_workspace"
+
+# Agent-specific settings
+agent_automation:
+  enable_ai_insights: true
+  auto_optimize_layouts: true
+  smart_module_selection: true
+  intelligent_naming: true
+  
+  # AI-driven recommendations
+  ai_recommendations:
+    suggest_visual_improvements: true
+    recommend_data_optimizations: true
+    identify_automation_opportunities: true
+    predict_maintenance_needs: true
+
+# Security and compliance
+security_config:
+  encrypt_sensitive_data: true
+  audit_all_operations: true
+  secure_credential_handling: true
+  
+  # Compliance requirements
+  compliance:
+    gdpr_compliance: true
+    data_retention_days: 365
+    anonymize_sample_data: true
+
+# Custom extensions
+custom_extensions:
+  # Additional custom modules or tools can be configured here
+  enabled_extensions: []
+  extension_config: {}

@@ -1,0 +1,358 @@
+{
+  "name": "_template_image-visual",
+  "description": "Template for displaying static images, logos, and graphics in reports",
+  "category": "layouts",
+  "visualType": "image",
+  "config": {
+    "name": "{{VISUAL_ID}}",
+    "layouts": [
+      {
+        "id": 0,
+        "position": {
+          "x": "{{X_POSITION}}",
+          "y": "{{Y_POSITION}}",
+          "z": "{{Z_INDEX}}",
+          "width": "{{WIDTH}}",
+          "height": "{{HEIGHT}}",
+          "tabOrder": "{{TAB_ORDER}}"
+        }
+      }
+    ],
+    "singleVisual": {
+      "visualType": "image",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "imageUrl": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "{{RESOURCE_PACKAGE}}",
+                    "PackageType": "{{PACKAGE_TYPE}}",
+                    "ItemName": "{{IMAGE_RESOURCE_NAME}}"
+                  }
+                }
+              },
+              "imageFit": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{IMAGE_FIT}}'"
+                  }
+                }
+              },
+              "imageAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{IMAGE_ALIGNMENT}}'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "lockAspect": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{LOCK_ASPECT_RATIO}}"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "vcObjects": {
+        "background": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BACKGROUND}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{BACKGROUND_COLOR_ID}}",
+                        "Percent": "{{BACKGROUND_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{BACKGROUND_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BORDER}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'{{BORDER_COLOR}}'"
+                      }
+                    }
+                  }
+                }
+              },
+              "weight": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{BORDER_WEIGHT}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "visualTooltip": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_TOOLTIP}}"
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TOOLTIP_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "visualHeader": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_HEADER}}"
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{HEADER_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "title": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_TITLE}}"
+                  }
+                }
+              },
+              "text": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_TEXT}}'"
+                  }
+                }
+              },
+              "fontColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{TITLE_COLOR_ID}}",
+                        "Percent": "{{TITLE_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TITLE_FONT_SIZE}}D"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_FONT_FAMILY}}'"
+                  }
+                }
+              },
+              "bold": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TITLE_BOLD}}"
+                  }
+                }
+              },
+              "alignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_ALIGNMENT}}'"
+                  }
+                }
+              },
+              "titleWrap": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TITLE_WRAP}}"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "defaultValues": {
+    "VISUAL_ID": "image-visual-001",
+    "X_POSITION": "20", 
+    "Y_POSITION": "20",
+    "Z_INDEX": "1000",
+    "WIDTH": "200",
+    "HEIGHT": "150",
+    "TAB_ORDER": "1000",
+    "RESOURCE_PACKAGE": "RegisteredResources",
+    "PACKAGE_TYPE": "1",
+    "IMAGE_RESOURCE_NAME": "Logo.png",
+    "IMAGE_FIT": "Fit",
+    "IMAGE_ALIGNMENT": "Center",
+    "LOCK_ASPECT_RATIO": "true",
+    "SHOW_BACKGROUND": "false",
+    "BACKGROUND_COLOR_ID": "1",
+    "BACKGROUND_COLOR_PERCENT": "0.2",
+    "BACKGROUND_TRANSPARENCY": "0",
+    "SHOW_BORDER": "false",
+    "BORDER_COLOR": "#cccccc",
+    "BORDER_WEIGHT": "1",
+    "SHOW_TOOLTIP": "false",
+    "TOOLTIP_TRANSPARENCY": "0",
+    "SHOW_HEADER": "false", 
+    "HEADER_TRANSPARENCY": "0",
+    "SHOW_TITLE": "false",
+    "TITLE_TEXT": "Image",
+    "TITLE_COLOR_ID": "0",
+    "TITLE_COLOR_PERCENT": "0",
+    "TITLE_FONT_SIZE": "12",
+    "TITLE_FONT_FAMILY": "Calibri",
+    "TITLE_BOLD": "true",
+    "TITLE_ALIGNMENT": "center",
+    "TITLE_WRAP": "true"
+  },
+  "placeholders": [
+    {
+      "name": "VISUAL_ID",
+      "description": "Unique identifier for the image visual",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "IMAGE_RESOURCE_NAME",
+      "description": "Name of the image resource file (must be uploaded to resource package)",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "IMAGE_FIT",
+      "description": "How the image should fit within the visual bounds",
+      "required": false,
+      "type": "string",
+      "allowedValues": ["Fit", "Fill", "FitProportional", "Normal"]
+    },
+    {
+      "name": "IMAGE_ALIGNMENT",
+      "description": "Alignment of the image within the visual",
+      "required": false,
+      "type": "string",
+      "allowedValues": ["TopLeft", "TopCenter", "TopRight", "MiddleLeft", "Center", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight"]
+    },
+    {
+      "name": "X_POSITION",
+      "description": "Horizontal position on the canvas",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "Y_POSITION", 
+      "description": "Vertical position on the canvas",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "WIDTH",
+      "description": "Width of the image visual",
+      "required": true,
+      "type": "number"
+    },
+    {
+      "name": "HEIGHT",
+      "description": "Height of the image visual", 
+      "required": true,
+      "type": "number"
+    }
+  ],
+  "useCases": [
+    "Displaying company logos and branding",
+    "Adding decorative graphics and icons",
+    "Showing reference images and diagrams",
+    "Creating visual separators and design elements",
+    "Adding contextual images for storytelling"
+  ],
+  "dependencies": [
+    {
+      "type": "resource",
+      "description": "Image file must be uploaded to the report's resource package",
+      "required": true
+    }
+  ],
+  "validation": {
+    "requiredProperties": ["VISUAL_ID", "IMAGE_RESOURCE_NAME"],
+    "positionBounds": {
+      "x": {"min": 0, "max": 1280},
+      "y": {"min": 0, "max": 720},
+      "width": {"min": 20, "max": 600},
+      "height": {"min": 20, "max": 600}
+    },
+    "supportedFormats": ["PNG", "JPG", "JPEG", "GIF", "BMP", "SVG"]
+  },
+  "notes": [
+    "Images must be uploaded to the report's resource package before referencing",
+    "Consider image file size and resolution for optimal performance", 
+    "Use SVG format for scalable graphics and logos",
+    "Lock aspect ratio is recommended to maintain image proportions"
+  ]
+}

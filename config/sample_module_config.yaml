@@ -1,0 +1,222 @@
+# Sample Configuration for Module Generation
+# This file demonstrates the structure needed for automated module generation
+
+# Organization Branding Configuration
+organization:
+  name: "University of Southern California"
+  primary_color: "#0078D4"  # Modern Blue
+  secondary_color: "#F7F7F7"  # Light Gray
+  accent_color: "#107C10"    # Success Green
+  neutral_color: "#6C757D"   # Gray for supporting elements
+  text_color: "#333333"      # Dark gray for readability
+  font_family: "Segoe UI, wf_segoe-ui_normal, helvetica, arial, sans-serif"
+  chart_style: "Modern"
+  logo_placement: "Top-left corner with 10px margin"
+  contact: "Business Intelligence Team - bi-team@organization.com"
+
+# Global Configuration
+author: "Business Intelligence Team"
+project_context:
+  domain: "Higher Education Analytics"
+  purpose: "Student enrollment and academic performance tracking"
+  audience: ["executives", "administrators", "academic_staff"]
+
+# KPI Module Configuration
+kpi:
+  measures:
+    - name: "Total Enrollment"
+      format: "#,0"
+      data_table: "EnrollmentFacts"
+      target: "25000"
+      warning_threshold: "20000"
+      audience: "executive"
+      width: 200
+      height: 120
+      
+    - name: "Graduation Rate"
+      format: "0.0%"
+      data_table: "GraduationFacts"
+      target: "0.85"
+      warning_threshold: "0.75"
+      audience: "executive"
+      width: 200
+      height: 120
+      
+    - name: "Student Satisfaction Score"
+      format: "0.0"
+      data_table: "SurveyFacts"
+      target: "4.0"
+      warning_threshold: "3.5"
+      audience: "operational"
+      width: 180
+      height: 100
+      
+    - name: "Average GPA"
+      format: "0.00"
+      data_table: "AcademicFacts"
+      target: "3.20"
+      warning_threshold: "3.00"
+      audience: "analytical"
+      width: 160
+      height: 100
+
+# Chart Module Configuration  
+charts:
+  chart_types:
+    - type: "lineChart"
+      purpose: "enrollment_trend"
+      dimensions: ["DateDimension", "ProgramDimension"]
+      measures: ["Total Enrollment", "New Enrollments"]
+      analysis_type: "trend"
+      width: 500
+      height: 350
+      interactions:
+        drill_through: true
+        cross_filtering: true
+        tooltips: "enhanced"
+        
+    - type: "columnChart"
+      purpose: "program_comparison"
+      dimensions: ["ProgramDimension"]
+      measures: ["Total Enrollment", "Graduation Rate"]
+      analysis_type: "comparison"
+      width: 400
+      height: 300
+      interactions:
+        drill_through: true
+        cross_filtering: true
+        tooltips: "standard"
+        
+    - type: "barChart"
+      purpose: "department_performance"
+      dimensions: ["DepartmentDimension"]
+      measures: ["Average GPA", "Student Count"]
+      analysis_type: "comparison"
+      width: 450
+      height: 320
+      interactions:
+        drill_through: false
+        cross_filtering: true
+        tooltips: "standard"
+        
+    - type: "areaChart"
+      purpose: "satisfaction_trend"
+      dimensions: ["DateDimension", "CategoryDimension"]
+      measures: ["Satisfaction Score", "Response Rate"]
+      analysis_type: "trend"
+      width: 500
+      height: 300
+      interactions:
+        drill_through: true
+        cross_filtering: true
+        tooltips: "enhanced"
+
+# Filter Module Configuration
+filters:
+  filter_dimensions:
+    - dimension: "Academic Year"
+      type: "dropdown"
+      multi_select: false
+      default_selection: "2023-2024"
+      source_table: "DateDimension"
+      search_enabled: false
+      width: 180
+      height: 60
+      
+    - dimension: "Program Level"
+      type: "list"
+      multi_select: true
+      default_selection: "all"
+      source_table: "ProgramDimension"
+      search_enabled: false
+      width: 200
+      height: 120
+      
+    - dimension: "Department"
+      type: "dropdown"
+      multi_select: true
+      default_selection: "all"
+      source_table: "DepartmentDimension"
+      search_enabled: true
+      width: 220
+      height: 60
+      
+    - dimension: "Student Type"
+      type: "tiles"
+      multi_select: true
+      default_selection: "all"
+      source_table: "StudentDimension"
+      search_enabled: false
+      width: 300
+      height: 80
+      
+  date_dimensions:
+    - dimension: "Report Date"
+      fiscal_year: true
+      default_period: "current_year"
+      relative_filtering: true
+      source_table: "DateDimension"
+      width: 250
+      height: 100
+
+# Layout Module Configuration
+layouts:
+  layout_types:
+    executive:
+      focus: "high_level_kpis"
+      visual_density: "low"
+      interaction_complexity: "minimal"
+      
+    operational:
+      focus: "detailed_metrics"
+      visual_density: "medium" 
+      interaction_complexity: "moderate"
+      
+    analytical:
+      focus: "drill_down_analysis"
+      visual_density: "high"
+      interaction_complexity: "advanced"
+
+# Page Structure Configuration
+page_structure:
+  header_height: 80
+  filter_bar_height: 60
+  content_area_grid: "4x3"
+  footer_height: 40
+  filter_slots: 5
+
+# Performance and Accessibility Requirements
+requirements:
+  performance:
+    max_load_time_seconds: 3
+    max_visuals_per_page: 12
+    max_data_points_per_visual: 1000
+    
+  accessibility:
+    wcag_compliance: "AA"
+    color_contrast_ratio: 4.5
+    keyboard_navigation: true
+    screen_reader_support: true
+    
+  responsive:
+    breakpoints:
+      mobile: 375
+      tablet: 768
+      desktop: 1366
+    
+# Validation Rules
+validation:
+  required_fields:
+    - name
+    - type
+    - category
+    - version
+    - config
+  
+  naming_conventions:
+    module_files: "[category]-[purpose]-[variant].json"
+    visual_ids: "[category]_[name]_[uuid]"
+    
+  file_sizes:
+    max_module_file_kb: 100
+    max_total_modules_mb: 50

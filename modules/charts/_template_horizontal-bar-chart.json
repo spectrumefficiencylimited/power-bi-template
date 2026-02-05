@@ -1,0 +1,526 @@
+{
+  "name": "_template_horizontal-bar-chart",
+  "description": "Template for creating horizontal bar charts to display categorical data comparisons",
+  "category": "charts", 
+  "visualType": "barChart",
+  "config": {
+    "name": "{{VISUAL_ID}}",
+    "layouts": [
+      {
+        "id": 0,
+        "position": {
+          "x": "{{X_POSITION}}",
+          "y": "{{Y_POSITION}}",
+          "z": "{{Z_INDEX}}",
+          "width": "{{WIDTH}}",
+          "height": "{{HEIGHT}}",
+          "tabOrder": "{{TAB_ORDER}}"
+        }
+      }
+    ],
+    "singleVisual": {
+      "visualType": "barChart",
+      "projections": {
+        "Category": [
+          {
+            "queryRef": "{{CATEGORY_FIELD}}",
+            "active": true
+          }
+        ],
+        "Y": [
+          {
+            "queryRef": "{{VALUE_FIELD}}"
+          }
+        ],
+        "Series": [
+          {
+            "queryRef": "{{SERIES_FIELD}}"
+          }
+        ],
+        "Tooltips": [
+          {
+            "queryRef": "{{TOOLTIP_FIELD_1}}"
+          }
+        ]
+      },
+      "prototypeQuery": {
+        "Version": 2,
+        "From": [
+          {
+            "Name": "{{TABLE_ALIAS}}",
+            "Entity": "{{SOURCE_TABLE}}",
+            "Type": 0
+          }
+        ],
+        "Select": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "{{TABLE_ALIAS}}"
+                }
+              },
+              "Property": "{{CATEGORY_COLUMN}}"
+            },
+            "Name": "{{CATEGORY_FIELD}}",
+            "NativeReferenceName": "{{CATEGORY_DISPLAY_NAME}}"
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Source": "{{TABLE_ALIAS}}"
+                }
+              },
+              "Property": "{{VALUE_COLUMN}}"
+            },
+            "Name": "{{VALUE_FIELD}}",
+            "NativeReferenceName": "{{VALUE_DISPLAY_NAME}}"
+          }
+        ]
+      },
+      "drillFilterOtherVisuals": "{{DRILL_FILTER_OTHERS}}",
+      "objects": {
+        "categoryAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_CATEGORY_AXIS}}"
+                  }
+                }
+              },
+              "labelColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{CATEGORY_LABEL_COLOR_ID}}",
+                        "Percent": "{{CATEGORY_LABEL_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{CATEGORY_FONT_SIZE}}D"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{CATEGORY_FONT_FAMILY}}'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_VALUE_AXIS}}"
+                  }
+                }
+              },
+              "labelColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{VALUE_LABEL_COLOR_ID}}",
+                        "Percent": "{{VALUE_LABEL_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{VALUE_FONT_SIZE}}D"
+                  }
+                }
+              },
+              "labelDisplayUnits": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{VALUE_DISPLAY_UNITS}}D"
+                  }
+                }
+              },
+              "labelPrecision": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{VALUE_PRECISION}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataColors": [
+          {
+            "properties": {
+              "defaultColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{DATA_COLOR_ID}}",
+                        "Percent": "{{DATA_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataLabels": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_DATA_LABELS}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{DATA_LABEL_COLOR_ID}}",
+                        "Percent": "{{DATA_LABEL_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{DATA_LABEL_FONT_SIZE}}D"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{DATA_LABEL_FONT_FAMILY}}'"
+                  }
+                }
+              },
+              "displayUnits": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{DATA_LABEL_DISPLAY_UNITS}}D"
+                  }
+                }
+              },
+              "precision": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{DATA_LABEL_PRECISION}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_LEGEND}}"
+                  }
+                }
+              },
+              "position": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{LEGEND_POSITION}}'"
+                  }
+                }
+              },
+              "showTitle": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_LEGEND_TITLE}}"
+                  }
+                }
+              },
+              "titleText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{LEGEND_TITLE}}'"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "vcObjects": {
+        "background": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BACKGROUND}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{BACKGROUND_COLOR_ID}}",
+                        "Percent": "{{BACKGROUND_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{BACKGROUND_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "border": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_BORDER}}"
+                  }
+                }
+              },
+              "color": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'{{BORDER_COLOR}}'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "title": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{SHOW_TITLE}}"
+                  }
+                }
+              },
+              "text": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_TEXT}}'"
+                  }
+                }
+              },
+              "fontColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "ThemeDataColor": {
+                        "ColorId": "{{TITLE_COLOR_ID}}",
+                        "Percent": "{{TITLE_COLOR_PERCENT}}"
+                      }
+                    }
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TITLE_FONT_SIZE}}D"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_FONT_FAMILY}}'"
+                  }
+                }
+              },
+              "alignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'{{TITLE_ALIGNMENT}}'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "visualTooltip": [
+          {
+            "properties": {
+              "transparency": {
+                "expr": {
+                  "Literal": {
+                    "Value": "{{TOOLTIP_TRANSPARENCY}}D"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "defaultValues": {
+    "VISUAL_ID": "horizontal-bar-chart-001",
+    "X_POSITION": "20",
+    "Y_POSITION": "20",
+    "Z_INDEX": "2000",
+    "WIDTH": "400",
+    "HEIGHT": "300",
+    "TAB_ORDER": "2000",
+    "CATEGORY_FIELD": "TableName.CategoryColumn",
+    "VALUE_FIELD": "TableName.ValueMeasure",
+    "SERIES_FIELD": "TableName.SeriesColumn",
+    "TOOLTIP_FIELD_1": "TableName.TooltipMeasure",
+    "TABLE_ALIAS": "t",
+    "SOURCE_TABLE": "FactTable",
+    "CATEGORY_COLUMN": "CategoryColumn",
+    "VALUE_COLUMN": "ValueMeasure",
+    "CATEGORY_DISPLAY_NAME": "Category",
+    "VALUE_DISPLAY_NAME": "Value",
+    "DRILL_FILTER_OTHERS": "true",
+    "SHOW_CATEGORY_AXIS": "true",
+    "CATEGORY_LABEL_COLOR_ID": "0",
+    "CATEGORY_LABEL_COLOR_PERCENT": "0",
+    "CATEGORY_FONT_SIZE": "10",
+    "CATEGORY_FONT_FAMILY": "Calibri",
+    "SHOW_VALUE_AXIS": "true",
+    "VALUE_LABEL_COLOR_ID": "0",
+    "VALUE_LABEL_COLOR_PERCENT": "0",
+    "VALUE_FONT_SIZE": "10",
+    "VALUE_DISPLAY_UNITS": "0",
+    "VALUE_PRECISION": "0",
+    "DATA_COLOR_ID": "1",
+    "DATA_COLOR_PERCENT": "0",
+    "SHOW_DATA_LABELS": "false",
+    "DATA_LABEL_COLOR_ID": "0",
+    "DATA_LABEL_COLOR_PERCENT": "0",
+    "DATA_LABEL_FONT_SIZE": "9",
+    "DATA_LABEL_FONT_FAMILY": "Calibri",
+    "DATA_LABEL_DISPLAY_UNITS": "0",
+    "DATA_LABEL_PRECISION": "0",
+    "SHOW_LEGEND": "true",
+    "LEGEND_POSITION": "Right",
+    "SHOW_LEGEND_TITLE": "true",
+    "LEGEND_TITLE": "Legend",
+    "SHOW_BACKGROUND": "false",
+    "BACKGROUND_COLOR_ID": "1",
+    "BACKGROUND_COLOR_PERCENT": "0.2",
+    "BACKGROUND_TRANSPARENCY": "0",
+    "SHOW_BORDER": "false",
+    "BORDER_COLOR": "#cccccc",
+    "SHOW_TITLE": "true",
+    "TITLE_TEXT": "Horizontal Bar Chart",
+    "TITLE_COLOR_ID": "0",
+    "TITLE_COLOR_PERCENT": "0",
+    "TITLE_FONT_SIZE": "14",
+    "TITLE_FONT_FAMILY": "Calibri",
+    "TITLE_ALIGNMENT": "center",
+    "TOOLTIP_TRANSPARENCY": "0"
+  },
+  "placeholders": [
+    {
+      "name": "VISUAL_ID",
+      "description": "Unique identifier for the bar chart visual",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "CATEGORY_FIELD",
+      "description": "Field for chart categories (e.g., TableName.ColumnName)",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "VALUE_FIELD",
+      "description": "Field for chart values/measures (e.g., TableName.MeasureName)",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "SOURCE_TABLE",
+      "description": "Source table name for the data",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "CATEGORY_COLUMN",
+      "description": "Column name for categories",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "VALUE_COLUMN",
+      "description": "Column/measure name for values",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "name": "TITLE_TEXT",
+      "description": "Title text for the chart",
+      "required": false,
+      "type": "string"
+    }
+  ],
+  "useCases": [
+    "Comparing categorical data values",
+    "Ranking items by performance metrics",
+    "Showing distribution across categories",
+    "Displaying survey results or scores",
+    "Market share analysis"
+  ],
+  "dependencies": [
+    {
+      "type": "data",
+      "description": "Requires categorical field and numeric measure",
+      "required": true
+    }
+  ],
+  "validation": {
+    "requiredProperties": ["VISUAL_ID", "CATEGORY_FIELD", "VALUE_FIELD", "SOURCE_TABLE"],
+    "positionBounds": {
+      "x": {"min": 0, "max": 1280},
+      "y": {"min": 0, "max": 720},
+      "width": {"min": 150, "max": 800},
+      "height": {"min": 100, "max": 600}
+    }
+  }
+}

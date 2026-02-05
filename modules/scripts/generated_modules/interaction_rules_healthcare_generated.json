@@ -1,0 +1,43 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "interaction_rules",
+  "domain": "healthcare",
+  "default_behavior": "filter",
+  "rules": [
+    {
+      "source": "all_slicers",
+      "target": "all_visuals",
+      "interaction": "filter",
+      "reason": "Enable cross-filtering for comprehensive analysis"
+    },
+    {
+      "source": "kpi_strip",
+      "target": "all_visuals",
+      "interaction": "none",
+      "reason": "KPIs should not be interactive to maintain clarity"
+    },
+    {
+      "source": "day_hour_heatmap",
+      "target": "all_visuals",
+      "interaction": "filter",
+      "reason": "Allow drilling into specific time periods"
+    },
+    {
+      "source": "age_group_distribution",
+      "target": "gender_distribution,race_distribution",
+      "interaction": "highlight",
+      "reason": "Show demographic correlations without filtering"
+    }
+  ],
+  "application_notes": [
+    "Apply these rules after creating all visuals",
+    "Use 'Edit Interactions' in Power BI Desktop",
+    "Test each interaction by clicking visuals",
+    "Validate that no highlighting behavior remains"
+  ],
+  "healthcare_notes": [
+    "Time-based interactions are critical for patient flow analysis",
+    "Ensure KPI cards do not filter other visuals to maintain clarity",
+    "Patient demographic filters should highlight correlations"
+  ]
+}

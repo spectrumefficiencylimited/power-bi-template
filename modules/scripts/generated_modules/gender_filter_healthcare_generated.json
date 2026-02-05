@@ -1,0 +1,21 @@
+{
+  "generated_from": "..\\..\\config\\examples\\hospital_er.yaml",
+  "module_type": "slicer",
+  "domain": "healthcare",
+  "name": "gender_filter",
+  "field": "Gender",
+  "title": "Gender",
+  "style": "list",
+  "multi_select": true,
+  "select_all": true,
+  "position": {
+    "x": 20,
+    "y": 340,
+    "width": 200,
+    "height": 80
+  },
+  "default_selection": "all",
+  "dashboard_visibility": [
+    "Patient Details"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "module": {
+    "name": "_[Chart Display Name]_",
+    "type": "_[lineChart|barChart|columnChart|areaChart|scatterChart]_",
+    "category": "charts",
+    "description": "_[Chart purpose and analysis type]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [
+      "_[Required table 1]_",
+      "_[Required table 2]_"
+    ],
+    "measures_required": [
+      "_[Required measure 1]_",
+      "_[Required measure 2]_"
+    ],
+    "config": {
+      "visualType": "_[lineChart|columnChart|etc]_",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "responsive": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "position": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'TopCenter'"
+                  }
+                }
+              },
+              "showTitle": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "axisType": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Continuous'"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "properties": {
+              "show": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              },
+              "fontSize": {
+                "expr": {
+                  "Literal": {
+                    "Value": "10L"
+                  }
+                }
+              },
+              "fontFamily": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'_[Organization font family]_'"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dataPoint": [
+          {
+            "properties": {
+              "defaultColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'_[Organization primary color hex]_'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "activeProjections": {
+        "Category": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Source table name]_"
+                }
+              },
+              "Property": "_[Category field name]_"
+            }
+          }
+        ],
+        "Y": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "_[Source table name]_"
+                }
+              },
+              "Property": "_[Measure name]_"
+            }
+          }
+        ]
+      },
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "color_palette": [
+        "_[Color 1 hex]_",
+        "_[Color 2 hex]_",
+        "_[Color 3 hex]_",
+        "_[Color 4 hex]_"
+      ],
+      "font_family": "_[Standard font family]_",
+      "chart_style": "_[Modern|Classic|Corporate]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "legend_position": "TopCenter",
+        "data_labels": "true"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "legend_position": "Bottom",
+        "data_labels": "false"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "legend_position": "None",
+        "data_labels": "false"
+      }
+    },
+    "accessibility": {
+      "color_blind_patterns": "_[Pattern differentiation in addition to color]_",
+      "high_contrast_mode": "_[High contrast color scheme]_",
+      "aria_labels": "_[Chart description for screen readers]_"
+    },
+    "usage_notes": {
+      "analysis_type": "_[Trend|Comparison|Distribution|Relationship]_",
+      "best_practices": "_[When to use this chart type]_",
+      "data_requirements": "_[Minimum/maximum data points]_",
+      "interaction_behavior": "_[Drill-through and cross-filtering]_"
+    },
+    "customization_options": {
+      "chart_variants": "_[Line|Area|Stepped line options]_",
+      "aggregation_options": "_[Sum|Average|Count|etc]_",
+      "time_intelligence": "_[YoY|MoM|QoQ options]_"
+    }
+  }
+}

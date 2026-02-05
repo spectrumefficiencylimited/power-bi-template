@@ -1,0 +1,297 @@
+# Adidas Sales Dashboard Configuration
+# Based on proven retail sales analysis patterns
+
+# Project metadata
+project:
+  name: "Adidas US Sales Dashboard"
+  description: "Executive sales performance dashboard with regional and product analysis"
+  pattern: "sales_executive_starter"
+
+# Dataset configuration
+dataset:
+  name: "Adidas US Sales"
+  grain: "retailer-day-product"
+  date_field: "Invoice Date"
+  geography:
+    state_field: "State"
+    region_field: "Region" 
+    country: "United States"
+  
+# Brand configuration
+branding:
+  primary_color: "#000000"      # Adidas black
+  secondary_color: "#FFFFFF"    # White
+  accent_color: "#FF6900"       # Adidas orange
+  font_family: "Segoe UI"
+  logo_placement: "top_left"
+
+# KPI Configuration (5-card strip)
+kpis:
+  - name: "Total Sales"
+    display_name: "Total Sales"
+    field: "Total Sales"
+    aggregation: "sum"
+    format: "currency0"
+    display_units: "millions"
+    description: "Total revenue across all channels"
+    
+  - name: "Operating Profit"
+    display_name: "Operating Profit"
+    field: "Operating Profit"
+    aggregation: "sum"
+    format: "currency0"
+    display_units: "millions"
+    description: "Profit after operating expenses"
+    
+  - name: "Units Sold"
+    display_name: "Units Sold"
+    field: "Units Sold"
+    aggregation: "sum"
+    format: "whole0"
+    display_units: "auto"
+    description: "Total product units sold"
+    
+  - name: "Avg Price per Unit"
+    display_name: "Avg Price/Unit"
+    field: "Price per unit"
+    aggregation: "average"  # CRITICAL: Must be average, not sum
+    format: "currency0"
+    display_units: "auto"
+    description: "Average selling price per unit"
+    validation:
+      aggregation_must_be: "average"
+      reason: "Unit price should be averaged across transactions"
+    
+  - name: "Avg Operating Margin"
+    display_name: "Avg Operating Margin"
+    field: "Operating margin"
+    aggregation: "average"  # CRITICAL: Must be average, not sum
+    format: "percent0"      # CRITICAL: Must be percentage format
+    display_units: "auto"
+    description: "Average operating margin percentage"
+    validation:
+      aggregation_must_be: "average"
+      format_must_be: "percent"
+      reason: "Margin should be averaged and displayed as percentage"
+
+# Main visualizations configuration
+visuals:
+  # Trend Analysis
+  - type: "area_trend"
+    name: "sales_trend"
+    title: "Total Sales by Month"
+    position: { row: 2, column: 1, width: 2, height: 1 }
+    x_axis: 
+      field: "Invoice Date"
+      time_unit: "Month"
+    y_axis:
+      field: "Total Sales"
+      aggregation: "sum"
+    features:
+      data_labels: true
+      markers: true
+      trend_line: false
+    insights:
+      - "Peak months: July, August, December"
+      - "Seasonal patterns align with sports calendar"
+      
+  # Geographic Analysis
+  - type: "filled_map"
+    name: "state_map"
+    title: "Total Sales by State"
+    position: { row: 3, column: 3, width: 1, height: 1 }
+    location_field: "State"
+    color_field: "Total Sales"
+    color_aggregation: "sum"
+    tooltips:
+      - field: "Total Sales"
+        aggregation: "sum"
+        format: "currency0"
+      - field: "Operating Profit"
+        aggregation: "sum"
+        format: "currency0"
+      - field: "Units Sold"
+        aggregation: "sum"
+        format: "whole0"
+      - field: "Price per unit"
+        aggregation: "average"
+        format: "currency0"
+      - field: "Operating margin"
+        aggregation: "average"
+        format: "percent0"
+    insights:
+      - "Top states: New York, California, Texas, Florida"
+      - "West Coast shows highest average margins"
+      
+  # Regional Composition
+  - type: "donut"
+    name: "region_composition"
+    title: "Total Sales by Region"
+    position: { row: 2, column: 3, width: 1, height: 1 }
+    category_field: "Region"
+    value_field: "Total Sales"
+    value_aggregation: "sum"
+    features:
+      legend_position: "right"
+      data_labels: true
+    insights:
+      - "West region typically leads in revenue"
+      - "Regional distribution affects product mix"
+      
+  # Product Performance
+  - type: "bar_horizontal"
+    name: "product_ranking"
+    title: "Total Sales by Product"
+    position: { row: 3, column: 1, width: 1, height: 1 }
+    category_field: "Product"
+    value_field: "Total Sales"
+    value_aggregation: "sum"
+    sort_order: "descending"
+    top_n: 10
+    insights:
+      - "Men's Street Footwear often top performer"
+      - "Athletic footwear drives volume"
+      
+  # Retailer Performance  
+  - type: "bar_horizontal"
+    name: "retailer_ranking"
+    title: "Total Sales by Retailer"
+    position: { row: 3, column: 2, width: 1, height: 1 }
+    category_field: "Retailer"
+    value_field: "Total Sales"
+    value_aggregation: "sum"
+    sort_order: "descending"
+    top_n: 10
+    insights:
+      - "West Gear frequently top retailer"
+      - "Specialist stores vs general retail performance"
+
+# Slicer configuration
+slicers:
+  - name: "region_slicer"
+    field: "Region"
+    title: "Region"
+    position: { row: 1, column: 4, width: 1, height: 1 }
+    style: "dropdown"
+    multi_select: true
+    select_all: true
+    default_selection: "all"
+    
+  - name: "date_slicer"
+    field: "Invoice Date"
+    title: "Date Range"
+    position: { row: 1, column: 5, width: 1, height: 1 }
+    style: "between"
+    default_range: "current_year"
+
+# Interaction behavior rules
+interactions:
+  default_behavior: "filter"  # CRITICAL: Use filter, not highlight
+  rules:
+    - source_type: "*"
+      target_type: "*"
+      behavior: "filter"
+      reason: "Enable drill-down analysis"
+      
+    - source_type: "slicer"
+      target_type: "*"
+      behavior: "filter"
+      reason: "Slicers should filter all visuals"
+
+# Page layout configuration
+layout:
+  grid:
+    rows: 4
+    columns: 5
+    cell_height: 200
+    cell_width: 300
+    margin: 10
+    
+  header:
+    height: 100
+    background_color: "#000000"
+    title_color: "#FFFFFF"
+    logo_size: { width: 80, height: 40 }
+    
+  kpi_strip:
+    position: { row: 1, column: 1, width: 3, height: 1 }
+    card_spacing: 15
+    border_width: 1
+    accent_bar_width: 4
+
+# Validation rules (prevent common mistakes)
+validation_rules:
+  aggregation_checks:
+    - field_pattern: "*price*"
+      required_aggregation: "average"
+      error_message: "Price fields should use AVERAGE aggregation, not SUM"
+      
+    - field_pattern: "*margin*"
+      required_aggregation: "average"
+      required_format: "percent"
+      error_message: "Margin fields should use AVERAGE aggregation with percentage format"
+      
+  formatting_checks:
+    - field_type: "currency"
+      required_format: "currency0"
+      required_display_units: ["auto", "millions", "thousands"]
+      
+    - field_type: "percentage" 
+      required_format: "percent0"
+      
+  interaction_checks:
+    - rule: "no_highlight_interactions"
+      description: "Ensure all interactions are set to Filter, not Highlight"
+
+# Documentation and insights
+documentation:
+  business_context: |
+    This dashboard provides executive-level visibility into Adidas US sales performance
+    across geographic regions, product categories, and retail channels. The design
+    emphasizes quick identification of trends, top performers, and opportunities.
+    
+  key_insights_template: |
+    ## Key Insights
+    
+    ### Temporal Patterns
+    - Peak sales months: [identify from trend]
+    - Seasonal variations: [describe patterns]
+    
+    ### Geographic Performance  
+    - Top performing states: [list top 3-5]
+    - Regional leaders: [identify by margin and volume]
+    
+    ### Product Performance
+    - Best selling products: [identify top performers]
+    - Margin leaders: [products with highest margins]
+    
+    ### Channel Performance
+    - Top retailers: [by volume and profitability]
+    - Channel optimization opportunities: [identify gaps]
+    
+  usage_instructions: |
+    1. Start with KPI strip for overall performance
+    2. Use date slicer to analyze specific periods
+    3. Click regions on map to filter other visuals
+    4. Use product and retailer charts to identify opportunities
+    5. Leverage region slicer for comparative analysis
+
+# Technical configuration
+technical:
+  pbip_version: "1.0"
+  desktop_version_min: "2.125"
+  requires_features:
+    - "pbip_format"
+    - "enhanced_metadata"
+  
+  performance:
+    max_data_points: 50000
+    refresh_frequency: "daily"
+    cache_duration: "1_hour"
+
+---
+# Usage Notes:
+# 1. Ensure all required fields exist in your data model
+# 2. Validate aggregation settings match the configuration
+# 3. Test interaction behavior after deployment
+# 4. Review insights section for narrative guidance

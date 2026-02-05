@@ -1,0 +1,115 @@
+{
+  "module": {
+    "name": "_[Text Box Display Name]_",
+    "type": "textbox",
+    "category": "layouts",
+    "description": "_[Text content purpose and usage description]_",
+    "version": "1.0",
+    "author": "_[Creator or team name]_",
+    "created": "_[ISO date format: YYYY-MM-DD]_",
+    "dependencies": [],
+    "measures_required": [],
+    "config": {
+      "visualType": "textbox",
+      "objects": {
+        "general": [
+          {
+            "properties": {
+              "paragraphs": [
+                {
+                  "horizontalAlignment": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "_[0=Left|1=Center|2=Right]_L"
+                      }
+                    }
+                  },
+                  "textRuns": [
+                    {
+                      "value": "_[Text content here]_",
+                      "textStyle": {
+                        "fontFamily": "_[Organization font family]_",
+                        "fontSize": "_[Font size]_L",
+                        "fontStyle": "_[0=Normal|1=Italic]_L",
+                        "fontWeight": "_[400=Normal|700=Bold]_L",
+                        "color": {
+                          "solid": {
+                            "color": {
+                              "expr": {
+                                "Literal": {
+                                  "Value": "'_[Text color hex]_'"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "_[0=Top|1=Middle|2=Bottom]_L"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "positioning": {
+        "width": "_[Default width in pixels]_",
+        "height": "_[Default height in pixels]_",
+        "z_index": 1
+      }
+    },
+    "organizational_branding": {
+      "font_family": "_[Standard font family]_",
+      "color_scheme": {
+        "primary_text": "_[Primary text color]_",
+        "secondary_text": "_[Secondary text color]_",
+        "accent_text": "_[Accent text color]_"
+      },
+      "text_style": "_[Corporate|Modern|Minimal]_"
+    },
+    "responsive_behavior": {
+      "desktop": {
+        "width": "_[Desktop width]_",
+        "height": "_[Desktop height]_",
+        "font_size": "_[Desktop font size]_",
+        "alignment": "_[Desktop text alignment]_"
+      },
+      "tablet": {
+        "width": "_[Tablet width]_",
+        "height": "_[Tablet height]_",
+        "font_size": "_[Tablet font size]_",
+        "alignment": "_[Tablet text alignment]_"
+      },
+      "mobile": {
+        "width": "_[Mobile width]_",
+        "height": "_[Mobile height]_",
+        "font_size": "_[Mobile font size]_",
+        "alignment": "_[Mobile text alignment]_"
+      }
+    },
+    "accessibility": {
+      "font_size_minimum": "_[Minimum readable font size]_",
+      "color_contrast": "_[WCAG compliance notes]_",
+      "screen_reader": "_[Screen reader compatibility]_"
+    },
+    "usage_notes": {
+      "content_type": "_[Title|Description|Instructions|Legal text]_",
+      "placement": "_[Header|Footer|Sidebar|Inline]_",
+      "update_frequency": "_[Static|Dynamic|User-editable]_",
+      "localization": "_[Multi-language support notes]_"
+    },
+    "customization_options": {
+      "text_formatting": "_[Bold|Italic|Underline|Color options]_",
+      "alignment_options": "_[Left|Center|Right|Justify]_",
+      "background_options": "_[Transparent|Solid|Gradient]_",
+      "border_options": "_[None|Solid|Dashed|Rounded corners]_"
+    }
+  }
+}
