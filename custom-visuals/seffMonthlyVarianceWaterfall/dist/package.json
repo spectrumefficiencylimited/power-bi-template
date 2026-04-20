@@ -1,0 +1,17 @@
+{
+		"version": "1.0.0.0",
+		"author": {"name":"SEFF","email":"support@seff.local"},
+		"resources": [
+			{
+				"resourceId": "rId0",
+				"sourceType": 5,
+				"file": "resources/seffMonthlyVarianceWaterfall271F6AC03A664E5EA88D4F6C2E186AB8.pbiviz.json"
+			}
+		],
+		"visual": {"name":"seffMonthlyVarianceWaterfall","displayName":"SEFF Monthly Variance Waterfall","guid":"seffMonthlyVarianceWaterfall271F6AC03A664E5EA88D4F6C2E186AB8","visualClassName":"Visual","version":"1.0.0.0","description":"SEFF starter visual for AC versus PY variance with conditional formatting.","supportUrl":"https://example.com/seff-powerbi-visuals","gitHubUrl":""},
+		"metadata": {
+			"pbivizjson": {
+				"resourceId": "rId0"
+			}
+		}
+	}

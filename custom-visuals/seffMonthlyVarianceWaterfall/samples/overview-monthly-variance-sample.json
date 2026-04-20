@@ -1,0 +1,33 @@
+{
+  "visualId": "seff-monthly-variance-waterfall",
+  "title": "Revenue vs Previous Year",
+  "lowerIsBetter": false,
+  "thresholds": {
+    "mediumPct": 3,
+    "strongPct": 10
+  },
+  "theme": {
+    "positiveStrongColor": "#17785F",
+    "positiveSoftColor": "#7DBF9C",
+    "neutralColor": "#C7C1B7",
+    "negativeSoftColor": "#E7A18F",
+    "negativeStrongColor": "#C5543D",
+    "referenceLineColor": "#44525F",
+    "backgroundColor": "#F5F1EA",
+    "accentColor": "#D59438"
+  },
+  "data": [
+    { "category": "Jan", "actual": 1120000, "previousYear": 1030000 },
+    { "category": "Feb", "actual": 1085000, "previousYear": 1100000 },
+    { "category": "Mar", "actual": 1210000, "previousYear": 1155000 },
+    { "category": "Apr", "actual": 1175000, "previousYear": 1110000 },
+    { "category": "May", "actual": 1260000, "previousYear": 1215000 },
+    { "category": "Jun", "actual": 1300000, "previousYear": 1230000 },
+    { "category": "Jul", "actual": 1275000, "previousYear": 1245000 },
+    { "category": "Aug", "actual": 1320000, "previousYear": 1270000 },
+    { "category": "Sep", "actual": 1290000, "previousYear": 1315000 },
+    { "category": "Oct", "actual": 1365000, "previousYear": 1280000 },
+    { "category": "Nov", "actual": 1410000, "previousYear": 1335000 },
+    { "category": "Dec", "actual": 1485000, "previousYear": 1390000 }
+  ]
+}

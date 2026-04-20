@@ -1,0 +1,25 @@
+.seff-variance-visual {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #24313b;
+  position: relative;
+}
+.seff-variance-visual svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.seff-empty-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #56636f;
+}
+

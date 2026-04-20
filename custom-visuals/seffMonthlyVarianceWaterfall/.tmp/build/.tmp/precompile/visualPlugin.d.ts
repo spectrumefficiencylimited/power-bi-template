@@ -1,0 +1,4 @@
+import powerbiVisualsApi from "powerbi-visuals-api";
+import IVisualPlugin = powerbiVisualsApi.visuals.plugins.IVisualPlugin;
+declare var seffMonthlyVarianceWaterfall271F6AC03A664E5EA88D4F6C2E186AB8: IVisualPlugin;
+export default seffMonthlyVarianceWaterfall271F6AC03A664E5EA88D4F6C2E186AB8;
