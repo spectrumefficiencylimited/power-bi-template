@@ -11,6 +11,7 @@ from typing import Any
 from mcp.server.fastmcp import FastMCP
 
 from .estate import reflect_estate as _reflect_estate
+from .baseline import score_baseline as _score_baseline
 
 mcp = FastMCP("data-shrink")
 
@@ -25,6 +26,18 @@ def reflect_estate(project_path: str) -> dict[str, Any]:
             and *.Report).
     """
     return _reflect_estate(project_path)
+
+
+@mcp.tool()
+def score_baseline(project_path: str) -> dict[str, Any]:
+    """Score a PBIP estate against the governance rules and return the capability
+    baseline: per-axis scores (0-5), an overall, and findings tagged by rule and
+    severity. Read-only. Axes with no judgeable signal are null, not faked.
+
+    Args:
+        project_path: path to a PBIP project folder.
+    """
+    return _score_baseline(project_path)
 
 
 def main() -> None:
