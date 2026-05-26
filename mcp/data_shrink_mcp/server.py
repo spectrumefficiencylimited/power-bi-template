@@ -13,6 +13,7 @@ from mcp.server.fastmcp import FastMCP
 from .estate import reflect_estate as _reflect_estate
 from .baseline import score_baseline as _score_baseline
 from .validate import validate_change as _validate_change
+from .generate import generate_module as _generate_module
 
 mcp = FastMCP("data-shrink")
 
@@ -56,6 +57,21 @@ def validate_change(change: dict[str, Any], project_path: str | None = None) -> 
             existing estate.
     """
     return _validate_change(change, project_path)
+
+
+@mcp.tool()
+def generate_module(config: dict[str, Any], out_dir: str | None = None) -> dict[str, Any]:
+    """Generate a governed module from a config. Runs validate_change first and
+    writes nothing if the config violates the rules. Writes to the working tree
+    (a branch) only — never a live workspace; does not commit (the PR is the gate).
+
+    Returns {ok, written, path?, module?, violations}.
+
+    Args:
+        config: a generation config (hospital_er.yaml shape — project, branding, kpis).
+        out_dir: where to write the module JSON; omit for a dry run.
+    """
+    return _generate_module(config, out_dir)
 
 
 def main() -> None:
