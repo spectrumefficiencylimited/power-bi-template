@@ -19,10 +19,16 @@ server only).
 | `score_baseline` | **built** | estate → capability baseline (per-axis 0-5 + findings) vs the rules |
 | `validate_change` | **built** | check a proposed change (measure/config) against the rules — the gate write tools call first |
 | `generate_module` | **built** | validate-gate, then emit a governed module to a branch (refuses on violation) |
-| `propose_remediation` | planned | candidate TMDL edits via Microsoft's local server, to a branch |
+| `propose_remediation` | **built** (fake client) | candidate TMDL edit, gated, delegated to Microsoft's local server, to a branch |
 
 Read tools never touch files. Write tools run `validate_change` first and only
 write to a branch.
+
+> `propose_remediation` delegates the actual model write to Microsoft's *local*
+> MCP server via a pluggable client (`microsoft_bridge.py`). The real stdio
+> client to `microsoft/powerbi-modeling-mcp` is not wired yet; the default
+> `FakeLocalServerClient` records the intended edit, so the gate, the proposal,
+> and the delegation are all tested without the server connected.
 
 ## Run
 

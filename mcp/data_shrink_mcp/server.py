@@ -14,6 +14,7 @@ from .estate import reflect_estate as _reflect_estate
 from .baseline import score_baseline as _score_baseline
 from .validate import validate_change as _validate_change
 from .generate import generate_module as _generate_module
+from .remediate import propose_remediation as _propose_remediation
 
 mcp = FastMCP("data-shrink")
 
@@ -72,6 +73,23 @@ def generate_module(config: dict[str, Any], out_dir: str | None = None) -> dict[
         out_dir: where to write the module JSON; omit for a dry run.
     """
     return _generate_module(config, out_dir)
+
+
+@mcp.tool()
+def propose_remediation(finding: dict[str, Any], measure: dict[str, Any] | None = None,
+                        apply: bool = False) -> dict[str, Any]:
+    """Propose a candidate model edit for a finding, gated before anything is
+    applied. The actual TMDL write is delegated to Microsoft's local MCP server
+    (a branch write, ADR 0003). Dry-run by default.
+
+    v1 handles patient_count_distinct (rewrite COUNT/COUNTROWS to DISTINCTCOUNT).
+
+    Args:
+        finding: {"rule": ...} the rule to remediate.
+        measure: the offending measure {"name", "expression"}.
+        apply: if True, delegate the edit to the local server; else propose only.
+    """
+    return _propose_remediation(finding, measure=measure, apply=apply)
 
 
 def main() -> None:
