@@ -17,7 +17,7 @@ server only).
 | --- | --- | --- |
 | `reflect_estate` | **built** | PBIP metadata → semantic topology (read-only) |
 | `score_baseline` | **built** | estate → capability baseline (per-axis 0-5 + findings) vs the rules |
-| `validate_change` | planned | check a proposed change against the estate's rules |
+| `validate_change` | **built** | check a proposed change (measure/config) against the rules — the gate write tools call first |
 | `generate_module` | planned | emit a governed module to a branch |
 | `propose_remediation` | planned | candidate TMDL edits via Microsoft's local server, to a branch |
 

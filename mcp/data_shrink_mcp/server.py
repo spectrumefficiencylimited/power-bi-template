@@ -12,6 +12,7 @@ from mcp.server.fastmcp import FastMCP
 
 from .estate import reflect_estate as _reflect_estate
 from .baseline import score_baseline as _score_baseline
+from .validate import validate_change as _validate_change
 
 mcp = FastMCP("data-shrink")
 
@@ -38,6 +39,23 @@ def score_baseline(project_path: str) -> dict[str, Any]:
         project_path: path to a PBIP project folder.
     """
     return _score_baseline(project_path)
+
+
+@mcp.tool()
+def validate_change(change: dict[str, Any], project_path: str | None = None) -> dict[str, Any]:
+    """Validate a proposed change against the estate's governance rules before
+    anything is written. Read-only; the gate every write tool calls first.
+
+    Returns {ok, violations}. ok is True (clean), False (violations), or None
+    (unknown change kind).
+
+    Args:
+        change: {"kind": "measure", "name": ..., "expression": ...} or
+            {"kind": "config", "kpis": [...]}.
+        project_path: optional PBIP path, enables drift checks against the
+            existing estate.
+    """
+    return _validate_change(change, project_path)
 
 
 def main() -> None:
